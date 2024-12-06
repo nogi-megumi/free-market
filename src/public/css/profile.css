@@ -1,0 +1,19 @@
+.profile-group {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 50px auto;
+    align-items: center;
+}
+
+.profile-group__user-info {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.profile-group__user-name {
+    font-size: 24px;
+    font-weight: bold;
+}
