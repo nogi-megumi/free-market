@@ -6,11 +6,11 @@
     <div class="form">
         <form class="form__inner" action="/login" method="post">
             <div class="form-item">
-                <label class="form-item__label" for="">ユーザー名/メールアドレス</label>
+                <label class="form-item__label">ユーザー名/メールアドレス</label>
                 <input class="form-item__input" type="text" name="email">
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">パスワード</label>
+                <label class="form-item__label">パスワード</label>
                 <input class="form-item__input" type="password" name="password">
             </div>
             <div class="form-item">
