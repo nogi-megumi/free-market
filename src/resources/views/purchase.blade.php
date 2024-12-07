@@ -14,7 +14,7 @@
 </div>
 <div class="header-nav">
     <nav>
-        <ul class="header-nav">
+        <ul class="header-nav__group">
             <li class="header-nav__list">
                 <a class="header-nav__list-item" href="/logout">
                     ログアウト
@@ -40,7 +40,7 @@
             </div>
             <div>
                 <p class="item-name">商品名</p>
-                <p class="item-price">&yen;47,000</p>
+                <span class="item-price">&yen;47,000</span>
             </div>
         </div>
         <div class="form-group">

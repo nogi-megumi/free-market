@@ -9,7 +9,7 @@
 </div>
 <div class="header-nav">
     <nav>
-        <ul class="header-nav">
+        <ul class="header-nav__group">
             <li class="header-nav__list">
                 <a class="header-nav__list-item" href="/logout">
                     ログアウト

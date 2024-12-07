@@ -1,6 +1,5 @@
 .content--large {
-    width: 100%;
-    padding: 100px 100px;
+    padding: 5%;
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
@@ -16,17 +15,17 @@
 }
 
 .image-container--square {
-    margin-right: 60px;
+    margin-right: 5%;
 }
 
 .item-name,
 .item-price {
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .item-name {
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10%;
 }
 
 .form-group {
@@ -61,6 +60,14 @@ td {
     font-weight: bold;
     display: block;
     border: none;
+    line-height: 20px;
+}
+
+.purchase-table__select {
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .purchase-table__link {
@@ -89,4 +96,19 @@ td {
 
 .info-group__td {
     text-align: center;
+}
+
+@media screen and (max-width:850px) {
+    .image-container--square {
+        width: 150px;
+    }
+
+    .item-name,
+    .item-price {
+        font-size: 24px;
+    }
+
+    .purchase-table__select {
+        width: 100%;
+    }
 }

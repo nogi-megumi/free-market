@@ -17,3 +17,13 @@
     font-size: 24px;
     font-weight: bold;
 }
+
+@media screen and(max-width:850px) {
+    .profile-group {
+        width: 100%;
+    }
+
+    .profile-group__user-name {
+        font-size: 20px;
+    }
+}

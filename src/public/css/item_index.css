@@ -1,7 +1,3 @@
-.content--large {
-    width: 100%;
-}
-
 .tab-group {
     margin-top: 40px;
     border-bottom: 1px solid #000;
@@ -21,7 +17,7 @@
 .item-index {
     display: grid;
     grid-template-columns: repeat(4, 240px);
-    gap: 0 60px;
+    gap: 0 5%;
     width: 90%;
     margin: auto;
 }
@@ -46,4 +42,15 @@
     padding-top: 5px;
     margin: 0;
     color: #000;
+}
+
+@media screen and (max-width:850px) {
+    .item-index {
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .image-container--square {
+        width: auto;
+        height: 150px;
+    }
 }
