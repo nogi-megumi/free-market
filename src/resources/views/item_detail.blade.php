@@ -17,22 +17,23 @@
 <div class="header-nav">
     <nav>
         <ul class="header-nav__group">
-            {{-- @if (auth::check()) --}}
+            @if (Auth::check())
             <li class="header-nav__list">
-                <a class="header-nav__list-item" href="/logout">
-                    ログアウト
-                </a>
+                <form class="header-nav__list-item" action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="header-nav__list-item">ログアウト</button>
+                </form>
             </li>
-            {{-- @else --}}
+            @else
             <li class="header-nav__list">
                 <a class="header-nav__list-item" href="/login">ログイン</a>
             </li>
-            {{-- @endif --}} </li>
+            @endif </li>
             <li class="header-nav__list">
-                <a class="header-nav__list-item" href="">マイページ</a>
+                <a class="header-nav__list-item" href="/mypage">マイページ</a>
             </li>
             <li class="header-nav__list">
-                <a class="header-nav__list-item link--exhibition" href="">出品</a>
+                <a class="header-nav__list-item link--exhibition" href="/sell">出品</a>
             </li>
         </ul>
     </nav>
