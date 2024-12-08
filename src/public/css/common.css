@@ -23,7 +23,8 @@ main,
     background: #000;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 10px 5%;
+    padding: 0 5%;
+    height: 60px;
 }
 
 .header-search-form__input {
@@ -51,6 +52,14 @@ main,
 .header-nav__list-item {
     color: #eee;
     font-size: 14px;
+}
+
+button.header-nav__list-item {
+    color: #eee;
+    font-size: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .header-nav__list {
@@ -132,6 +141,9 @@ main {
 }
 
 @media screen and (max-width:850px) {
+    .header {
+        height: auto;
+    }
 
     .header-logo-image img,
     .header-search-form {
@@ -142,7 +154,12 @@ main {
         height: 32px;
     }
 
-    .header-nav__list-item {
+    .header-nav__group {
+        align-items: baseline;
+    }
+
+    .header-nav__list-item,
+    button.header-nav__list-item {
         font-size: 12px;
     }
 

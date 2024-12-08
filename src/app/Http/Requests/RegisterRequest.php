@@ -27,14 +27,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'=>['required','string','max:255'],
-            'email'=>['required', 'email', 'unique','max:255'],
+            'email'=>['required', 'email', 'unique:users','max:255'],
             'password'=>['required', 'min:8', 'confirmed']
         ];
     }
-    // public function messages()   
-    // {         
-    //     return [
-    //         'name.required' => 'お名前を入力してください。',
-    //     ];
-    // }
 }

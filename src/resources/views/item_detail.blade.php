@@ -17,11 +17,12 @@
 <div class="header-nav">
     <nav>
         <ul class="header-nav__group">
-            @if (auth::check())
+            @if (Auth::check())
             <li class="header-nav__list">
-                <a class="header-nav__list-item" href="/logout">
-                    ログアウト
-                </a>
+                <form class="header-nav__list-item" action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="header-nav__list-item">ログアウト</button>
+                </form>
             </li>
             @else
             <li class="header-nav__list">

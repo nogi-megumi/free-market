@@ -58,7 +58,6 @@ class RegisterController extends Controller
     }
     public function redirectPath()
     {
-        return '/mypage/profile';
+        return '/mypage/edit';
     }
-
 }
