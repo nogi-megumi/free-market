@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+// use Symfony\Contracts\Service\Attribute\Required;
+
 
 class RegisterRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,15 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>['required','string','max:255'],
+            'email'=>['required', 'email', 'unique','max:255'],
+            'password'=>['required', 'min:8', 'confirmed']
         ];
     }
+    // public function messages()   
+    // {         
+    //     return [
+    //         'name.required' => 'お名前を入力してください。',
+    //     ];
+    // }
 }
