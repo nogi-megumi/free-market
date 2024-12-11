@@ -35,14 +35,13 @@
 <div class="content--small">
     <div class="common-ttl">商品の出品</div>
     <div class="form">
-        <form class="form__inner" action="/" method="post">
+        <form class="form__inner" action="/sell" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-item">
                 <p class="form-item__label">商品画像</p>
                 <div class="image-container--transparent">
-                    <label class="link-bottun--border" for="item_image">画像を選択する
-                        <input class="input-image" type="text" name="item_image">
-                    </label>
+                    <label class="link-bottun--border" for="item_image">画像を選択する</label>
+                    <input class="input-image" type="file" id="item_image" accept=".jpg,.jpeg,.png" name="item_image">
                 </div>
             </div>
             <h3 class="exhibition-ttl">商品の詳細</h3>

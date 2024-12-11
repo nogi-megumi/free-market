@@ -15,6 +15,14 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('condition_id');
+            $table->string('item_image');
+            $table->string('item_name');
+            $table->string('description');
+            $table->integer('price');
+            $table->string('brand');
+            $table->string('status')->default('出品中');
             $table->timestamps();
         });
     }
