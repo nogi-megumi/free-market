@@ -46,15 +46,17 @@
         {{-- マイリストはログインユーザーの閲覧可 --}}
     </div>
     <div class="item-index">
+        @foreach ($items as $item)
         <div class="item-index__item-group">
             <a href="">
                 <div class="image-container--square">
-                    <img class="image-container__image" src="" alt="商品画像">
+                    <img class="image-container__image" src="{{$item->item_image}}" alt="商品画像">
                 </div>
-                <p class="item-name">商品名</p>
+                <p class="item-name">{{$item->item_name}}</p>
             </a>
         </div>
-        <div class="item-index__item-group">
+        @endforeach
+        {{-- <div class="item-index__item-group">
             <a href="">
                 <div class="image-container--square">
                     <img class="image-container__image" src="" alt="商品画像">
@@ -89,7 +91,7 @@
                 <img class="image-container__image" src="" alt="商品画像">
             </div>
             <p class="item-name">商品名</p>
-        </div>
+        </div> --}}
     </div>
 
 </div>
