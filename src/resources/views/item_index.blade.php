@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{asset('css/item_index.css')}}">
+<script src="{{ asset('/js/tab.js') }}"></script>
 @endsection
 
 @section('header-item')
@@ -41,7 +42,7 @@
 @section('content')
 <div class="content--large">
     <div class="tab-group">
-        <a class="tab-group__tab" href="">おすすめ</a>
+        <a class="tab-group__tab active" href="/">おすすめ</a>
         <a class="tab-group__tab" href="">マイリスト</a>
         {{-- マイリストはログインユーザーの閲覧可 --}}
     </div>
@@ -50,49 +51,13 @@
         <div class="item-index__item-group">
             <a href="">
                 <div class="image-container--square">
-                    <img class="image-container__image" src="{{$item->item_image}}" alt="商品画像">
+                    <img class="image-container__image" src="{{ asset('storage/' . $item->item_image) }}"
+                        alt="{{$item->item_name}}">
                 </div>
                 <p class="item-name">{{$item->item_name}}</p>
             </a>
         </div>
         @endforeach
-        {{-- <div class="item-index__item-group">
-            <a href="">
-                <div class="image-container--square">
-                    <img class="image-container__image" src="" alt="商品画像">
-                </div>
-                <p class="item-name">商品名</p>
-            </a>
-        </div>
-        <div class="item-index__item-group">
-            <a href="">
-                <div class="image-container--square">
-                    <img class="image-container__image" src="" alt="商品画像">
-                </div>
-                <p class="item-name">商品名</p>
-            </a>
-        </div>
-        <div class="item-index__item-group">
-            <a href="">
-                <div class="image-container--square">
-                    <img class="image-container__image" src="" alt="商品画像">
-                </div>
-                <p class="item-name">商品名</p>
-            </a>
-        </div>
-        <div class="item-index__item-group">
-            <div class="image-container--square">
-                <img class="image-container__image" src="" alt="商品画像">
-            </div>
-            <p class="item-name">商品名</p>
-        </div>
-        <div class="item-index__item-group">
-            <div class="image-container--square">
-                <img class="image-container__image" src="" alt="商品画像">
-            </div>
-            <p class="item-name">商品名</p>
-        </div> --}}
     </div>
-
 </div>
 @endsection

@@ -21,7 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('item_name');
             $table->string('description');
             $table->integer('price');
-            $table->string('brand');
+            $table->string('brand'); //nullableに変更するかも 
             $table->string('status')->default('出品中');
             $table->timestamps();
         });

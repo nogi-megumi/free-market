@@ -9,7 +9,7 @@
     font-size: 16px;
 }
 
-.tab-group__tab:focus {
+.tab-group__tab.active {
     color: #ff5555;
     font-weight: bold;
 }

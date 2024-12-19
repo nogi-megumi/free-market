@@ -49,8 +49,7 @@
                 <p class="form-item__label">商品画像</p>
                 <div class="image-container--transparent">
                     <label class="link-bottun--border" for="imageInput">画像を選択する</label>
-                    <input class="input-image" type="file" id="imageInput" accept=".jpg,.jpeg,.png" name="item_image"
-                        value="{{old('item_image')}}">
+                    <input class="input-image" type="file" id="imageInput" accept=".jpg,.jpeg,.png" name="item_image">
                     <img id="preview" src="">
                 </div>
             </div>
