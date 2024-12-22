@@ -23,6 +23,7 @@
 
 p.form-item__label {
     margin-bottom: 0;
+    display: inline-block;
 }
 
 .category-group {

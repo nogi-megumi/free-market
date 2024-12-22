@@ -51,8 +51,8 @@
         <div class="item-index__item-group">
             <a href="">
                 <div class="image-container--square">
-                    <img class="image-container__image" src="{{ asset('storage/' . $item->item_image) }}"
-                        alt="{{$item->item_name}}">
+                    <img class="image-container__image"
+                        src="{{ asset('storage/images/' . $item->item_image) }}" alt="{{$item->item_name}}">
                 </div>
                 <p class="item-name">{{$item->item_name}}</p>
             </a>

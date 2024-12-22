@@ -21,7 +21,7 @@ class ExhibitionController extends Controller
     {
         $user_id = auth()->user()->id;
         $image = $request->file('item_image');
-        $path = Storage::putFile('images', $image);
+        $path = Storage::putFile('public/images', $image);
 
         $item = new Item(
             [
@@ -33,7 +33,7 @@ class ExhibitionController extends Controller
                 'price' => $request->price
             ]
         );
-        $item->item_image = $path;
+        $item->item_image = basename($path);
         $item->save();
         $item->categories()->attach($request->categories);
         return redirect('/');
