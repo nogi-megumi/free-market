@@ -2,6 +2,7 @@
 @section('css')
 <link rel="stylesheet" href="css/profile_edit.css">
 <link rel="stylesheet" href="css/exhibition.css">
+<script src="{{ asset('/js/upload_image.js') }}"></script>
 @endsection
 
 @section('header-item')
@@ -35,73 +36,92 @@
 <div class="content--small">
     <div class="common-ttl">商品の出品</div>
     <div class="form">
-        <form class="form__inner" action="/" method="post">
+        <form class="form__inner" action="/sell" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-item">
                 <p class="form-item__label">商品画像</p>
+                <span class="error-message">@error('item_image')
+                    {{$message}}
+                    @enderror
+                </span>
                 <div class="image-container--transparent">
-                    <label class="link-bottun--border" for="item_image">画像を選択する
-                        <input class="input-image" type="text" name="item_image">
-                    </label>
+                    <label class="link-bottun--border" for="imageInput">画像を選択する</label>
+                    <input class="input-image" type="file" id="imageInput" accept=".jpeg,.png" name="item_image">
+                    <img id="preview" src="">
                 </div>
             </div>
             <h3 class="exhibition-ttl">商品の詳細</h3>
             <div class="form-item">
                 <p class="form-item__label">カテゴリー</p>
+                <span class="error-message">
+                    @error('categories')
+                    {{$message}}
+                    @enderror
+                </span>
                 <div class="category-group">
-                    <label class="form-item__category-label" for="fashion">
-                        <input id="fashion" class="form-item__checkbox" type="checkbox" name="category"
-                            value="ファッション"><span>ファッション</span>
+                    @foreach ($categories as $category)
+                    <label class="form-item__category-label" for="{{$category->category}}">
+                        <input id="{{$category->category}}" class="form-item__checkbox" type="checkbox"
+                            name="categories[]" value="{{$category->id}}" {{old('categories',[]) &&
+                            in_array($category->id,old('categories')) ? 'checked' : ''}} multiple>
+                        <span>{{$category->category}}</span>
                     </label>
-                    <label class="form-item__category-label" for="interior">
-                        <input id="interior" class="form-item__checkbox" type="checkbox" name="category"
-                            value="インテリア"><span>インテリア</span>
-                    </label>
-                    <label class="form-item__category-label" for="mens">
-                        <input id="mens" class="form-item__checkbox" type="checkbox" name="category"
-                            value="メンズ"><span>メンズ</span>
-                    </label>
-                    <label class="form-item__category-label" for="ladies">
-                        <input id="ladies" class="form-item__checkbox" type="checkbox" name="category"
-                            value="レディース"><span>レディース</span>
-                    </label>
-                    <label class="form-item__category-label" for="game">
-                        <input id="game" class="form-item__checkbox" type="checkbox" name="category"
-                            value="ゲーム"><span>ゲーム</span>
-                    </label>
+                    @endforeach
                 </div>
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">商品の状態</label>
+                <label class="form-item__label">商品の状態</label>
+                <span class="error-message">
+                    @error('condition')
+                    {{$message}}
+                    @enderror
+                </span>
                 <select class="form-item__select" name="condition">
-                    <option value="" selected hidden>選択してください</option>
-                    <option value="1">良好</option>
-                    <option value="2">目立った傷や汚れなし</option>
-                    <option value="3">やや傷や汚れあり</option>
-                    <option value="4">状態が悪い</option>
+                    <option value="" hidden>選択してください</option>
+                    @foreach ($conditions as $condition)
+                    <option value="{{$condition->id}}" @if (old('condition')==$condition->id )selected @endif>
+                        {{$condition->condition}}
+                    </option>
+                    @endforeach
                 </select>
             </div>
             <h3 class="exhibition-ttl">商品名と説明</h3>
             <div class="form-item">
-                <label class="form-item__label" for="">商品名</label>
-                <input class="form-item__input" type="text" name="item_name">
+                <label class="form-item__label">商品名</label>
+                <span class="error-message">
+                    @error('item_name')
+                    {{$message}}
+                    @enderror
+                </span>
+                <input class="form-item__input" type="text" name="item_name" value="{{old('item_name')}}">
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">ブランド名</label>
-                <input class="form-item__input" type="text" name="brand">
+                <label class="form-item__label">ブランド名</label>
+                <input class="form-item__input" type="text" name="brand" value="{{old('brand')}}">
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">商品の説明</label>
-                <textarea class="form-item__detail" name="detail" cols="" rows="5"></textarea>
+                <label class="form-item__label">商品の説明</label>
+                <span class="error-message">
+                    @error('description')
+                    {{$message}}
+                    @enderror
+                </span>
+                <textarea class="form-item__detail" name="description" cols=""
+                    rows="5">{{old('description')}}</textarea>
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">販売価格</label>
-                <input class="form-item__input" type="number" name="price" placeholder="&yen;">
+                <label class="form-item__label">販売価格</label>
+                <span class="error-message">
+                    @error('price')
+                    {{$message}}
+                    @enderror
+                </span>
+                <input class="form-item__input" type="number" name="price" placeholder="&yen;" value="{{old('price')}}">
+            </div>
+            <div class="form-item">
+                <button class="form-item__button" type="submit">出品する</button>
             </div>
         </form>
-        <div class="form-item">
-            <button class="form-item__button">出品する</button>
-        </div>
     </div>
 </div>
 @endsection
