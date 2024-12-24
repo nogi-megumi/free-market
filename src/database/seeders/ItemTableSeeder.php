@@ -19,27 +19,30 @@ class ItemTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $user_id=User::inRandomOrder()->value('id');
 
-        $imageUrl= 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
-        $imageContent=Http::get($imageUrl)->body();
-        $imageName=uniqid() . '.jpg';
-        Storage::put('public/images/{$imageName}',$imageContent);
-        
-        $item=Item::create([
-            'user_id'=>$user_id,
-            'condition_id'=>'1',
-            'item_image'=> $imageName,
-            'item_name'=>'腕時計',
-            'description'=>'スタイリッシュなデザインのメンズ腕時計',
-            'price'=>'15000',
-            'brand'=>$faker->company,
+        $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
+            'condition_id' => '1',
+            'item_image' => $imageName,
+            'item_name' => '腕時計',
+            'description' => 'スタイリッシュなデザインのメンズ腕時計',
+            'price' => '15000',
+            'brand' => $faker->company,
         ]);
-       
-        $item->categories()->attach([1,5,12]);
+        $item->categories()->attach([1, 5, 12]);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '2',
             'item_image' => $imageName,
             'item_name' => 'HDD',
@@ -49,8 +52,13 @@ class ItemTableSeeder extends Seeder
         ]);
         $item->categories()->attach(2);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '3',
             'item_image' => $imageName,
             'item_name' => '玉ねぎ3束',
@@ -60,8 +68,13 @@ class ItemTableSeeder extends Seeder
         ]);
         $item->categories()->attach(10);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '4',
             'item_image' => $imageName,
             'item_name' => '革靴',
@@ -70,8 +83,14 @@ class ItemTableSeeder extends Seeder
             'brand' => $faker->company,
         ]);
         $item->categories()->attach([1, 5]);
-        $item=Item::create( [
-            'user_id' => $user_id,
+
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '1',
             'item_image' => $imageName,
             'item_name' => 'ノートPC',
@@ -81,8 +100,13 @@ class ItemTableSeeder extends Seeder
         ]);
         $item->categories()->attach(2);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '2',
             'item_image' => $imageName,
             'item_name' => 'マイク',
@@ -90,10 +114,15 @@ class ItemTableSeeder extends Seeder
             'price' => '8000',
             'brand' => $faker->company,
         ]);
-        $item->categories()->attach([2,13]);
+        $item->categories()->attach([2, 13]);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '3',
             'item_image' => $imageName,
             'item_name' => 'ショルダーバッグ',
@@ -103,8 +132,13 @@ class ItemTableSeeder extends Seeder
         ]);
         $item->categories()->attach([1, 4]);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '4',
             'item_image' => $imageName,
             'item_name' => 'タンブラー',
@@ -114,8 +148,13 @@ class ItemTableSeeder extends Seeder
         ]);
         $item->categories()->attach(10);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '1',
             'item_image' => $imageName,
             'item_name' => 'コーヒーミル',
@@ -125,8 +164,13 @@ class ItemTableSeeder extends Seeder
         ]);
         $item->categories()->attach(10);
 
-        $item=Item::create( [
-            'user_id' => $user_id,
+        // $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
+        $imageContent = Http::get($imageUrl)->body();
+        $imageName = uniqid() . '.jpg';
+        Storage::put('public/images/{$imageName}', $imageContent);
+
+        $item = Item::create([
+            'user_id' => User::factory(),
             'condition_id' => '2',
             'item_image' => $imageName,
             'item_name' => 'メイクセット',

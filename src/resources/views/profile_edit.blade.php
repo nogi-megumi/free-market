@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{asset('css/profile_edit.css')}}">
+<link rel="stylesheet" href="{{asset('css/profile.css')}}">
+<script src="{{ asset('/js/upload_image.js') }}"></script>
 @endsection
 
 @section('header-item')
@@ -35,31 +36,42 @@
 <div class="content--small">
     <div class="common-ttl">プロフィール設定</div>
     <div class="form">
-        <form class="form__inner" action="" method="post" enctype="multipart/form-data">
+        <form class="form__inner" action="/mypage/profile" method="post" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="image-group">
                 <div class="image-container--circle">
-                    <img class="image-container__image" src="" alt="">
+                    @if ($profile->user_image==null)
+                    <img class="image-container__image image--circle" src="" alt="ユーザーアイコン">
+                    @else
+                    <img class="image-container__image" src="{{asset('storage/images/' . $profile->user_image)}}"
+                        alt="ユーザーアイコン">
+                    @endif
                 </div>
-                <label for="profile_image" class="link-bottun--border">画像を選択する
-                    <input class="input-image" type="file" accept=".jpeg,.png" name="profile_image" id="profile_image">
+                <label for="imageInput" class="link-bottun--border">画像を選択する
+                    <input class="input-image" type="file" accept=".jpeg,.png" name="user_image" id="imageInput">
                 </label>
             </div>
+            <p class="error-message">
+                @error('item_image')
+                {{$message}}
+                @enderror
+            </p>
             <div class="form-item">
                 <label class="form-item__label" for="">ユーザー名</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="name" value="{{$user->name}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">郵便番号</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="postcode" value="{{$profile->postcode ?? ''}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">住所</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="address" value="{{$profile->address ?? ''}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">建物名</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="building" value="{{$profile->building ?? ''}}">
             </div>
             <div class="form-item">
                 <button class="form-item__button">更新する</button>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('css')
-<link rel="stylesheet" href="css/profile_edit.css">
+<link rel="stylesheet" href="css/profile.css">
 <link rel="stylesheet" href="css/exhibition.css">
 <script src="{{ asset('/js/upload_image.js') }}"></script>
 @endsection
