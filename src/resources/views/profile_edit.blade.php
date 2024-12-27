@@ -53,7 +53,7 @@
                 </label>
             </div>
             <p class="error-message">
-                @error('item_image')
+                @error('user_image')
                 {{$message}}
                 @enderror
             </p>
@@ -65,6 +65,11 @@
                 <label class="form-item__label" for="">郵便番号</label>
                 <input class="form-item__input" type="text" name="postcode" value="{{$profile->postcode ?? ''}}">
             </div>
+            <p class="error-message">
+                @error('postcode')
+                {{$message}}
+                @enderror
+            </p>
             <div class="form-item">
                 <label class="form-item__label" for="">住所</label>
                 <input class="form-item__input" type="text" name="address" value="{{$profile->address ?? ''}}">

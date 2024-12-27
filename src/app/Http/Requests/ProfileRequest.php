@@ -24,7 +24,15 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_image'=>['image', 'mimes:jpeg,png']
+            'user_image' => ['image', 'mimes:jpeg,png'],
+            'postcode' => ['regex:/^[0-9]{3}-[0-9]{4}$/i']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'user_image.mimes' => '拡張子が.jpegもしくは.pngの画像を選択してください',
+            'postcode.regex' => '郵便番号はハイフンを含む、半角数字で入力してください'
         ];
     }
 }
