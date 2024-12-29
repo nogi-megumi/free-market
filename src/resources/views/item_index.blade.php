@@ -52,7 +52,7 @@
     <div class="item-index">
         @foreach ($items as $item)
         <div class="item-index__item-group">
-            <a href="">
+            <a href="{{ route('item.show', $item) }}">
                 <div class="image-container--square">
                     <img class="image-container__image" src="{{ asset('storage/images/' . $item->item_image) }}"
                         alt="{{$item->item_name}}">

@@ -29,4 +29,12 @@ class ItemController extends Controller
 
         return view('item_index', compact('items', 'tab'));
     }
+    public function show(Item $item){
+        
+        $data=[
+            'item'=>$item
+        ];
+        // dd($data);
+        return view('item_detail',$data);
+    }
 }

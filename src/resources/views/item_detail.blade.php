@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('css')
-<link rel="stylesheet" href="css/item_index.css">
-<link rel="stylesheet" href="css/exhibition.css">
-<link rel="stylesheet" href="css/profile_edit.css">
-
-<link rel="stylesheet" href="css/item_detail.css">
+<link rel="stylesheet" href="{{asset('css/item_index.css')}}">
+<link rel="stylesheet" href="{{asset('css/exhibition.css')}}">
+<link rel="stylesheet" href="{{asset('css/profile_edit.css')}}">
+<link rel="stylesheet" href="{{asset('css/item_detail.css')}}">
 @endsection
 
 @section('header-item')
@@ -45,14 +44,15 @@
     <div class="content__grid">
         <div class="content__grid-column column__image">
             <div class="image-container--large">
-                <img class="image-container__image" src="" alt="商品画像">
+                <img class="image-container__image" src="{{asset('storage/images/' . $item->item_image)}}"
+                    alt="{{$item->item_name}}">
             </div>
         </div>
         <div class="content__grid-column">
             <div class="detail__parts">
-                <p class="detail-text--large">商品名がここに入る</p>
-                <p class="detail-text--small">ブランド名</p>
-                <p class="detail-text--small">&yen;<span class="detail-price">47,000</span>&#40;税込み&#41;</p>
+                <p class="detail-text--large">{{$item->item_name}}</p>
+                <p class="detail-text--small">{{$item->band ?? ''}}</p>
+                <p class="detail-text--small">&yen;<span class="detail-price">{{$item->price}}</span>&#40;税込み&#41;</p>
                 <div class="icon-group">
                     <div class="icon-group__item">
                         <a class="icon__button like-button" href="">
@@ -86,10 +86,7 @@
             <div class="detail__parts">
                 <p class="detail__ttl">商品説明</p>
                 <p class="detail-text--small">
-                    {{-- 出品ページ、商品の説明を挿入する --}}
-                    カラー：グレー<br>
-                    商品の状態は良好です。傷もありません。<br>
-                    購入後、即発送します。
+                    {{$item->description}}
                 </p>
             </div>
             <div class="detail__parts">
@@ -107,7 +104,7 @@
                         <th class="detail-table__th">商品の状態</th>
                         <td class="detail-table__td">
                             {{-- 出品ページ、商品の状態を挿入 --}}
-                            良好
+                            {{$item->condition->condition}}
                         </td>
                     </tr>
                 </table>
