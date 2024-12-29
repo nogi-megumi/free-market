@@ -1,5 +1,6 @@
 a {
     text-decoration: none;
+    color: #000;
 }
 
 .app,
@@ -138,6 +139,27 @@ main {
     color: #ff5555;
     font-size: 16px;
     margin-top: 0;
+}
+
+.alart-message {
+    color: #808080;
+    padding: 30px 10%;
+}
+
+.tab-group {
+    margin-top: 40px;
+    border-bottom: 1px solid #000;
+    padding-left: 40px;
+}
+
+.tab-group__tab {
+    margin-left: 50px;
+    font-size: 16px;
+}
+
+.tab-group__tab.active {
+    color: #ff5555;
+    font-weight: bold;
 }
 
 @media screen and (max-width:850px) {

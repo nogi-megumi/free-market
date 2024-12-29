@@ -2,7 +2,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{asset('css/item_index.css')}}">
-<script src="{{ asset('/js/tab.js') }}"></script>
 @endsection
 
 @section('header-item')
@@ -42,22 +41,30 @@
 @section('content')
 <div class="content--large">
     <div class="tab-group">
-        <a class="tab-group__tab active" href="/">おすすめ</a>
-        <a class="tab-group__tab" href="">マイリスト</a>
-        {{-- マイリストはログインユーザーの閲覧可 --}}
+        <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
+        <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}" href="/?tab=mylist">マイリスト</a>
     </div>
+    @if ($items->isEmpty())
+    @if ($tab==='mylist')
+    <p class="alart-message">マイリストに登録された商品はありません</p>
+    @endif
+    @else
     <div class="item-index">
         @foreach ($items as $item)
         <div class="item-index__item-group">
             <a href="">
                 <div class="image-container--square">
-                    <img class="image-container__image"
-                        src="{{ asset('storage/images/' . $item->item_image) }}" alt="{{$item->item_name}}">
+                    <img class="image-container__image" src="{{ asset('storage/images/' . $item->item_image) }}"
+                        alt="{{$item->item_name}}">
                 </div>
+                @if ($item->status==='売却済')
+                <span class="sold-message">Sold</span>
+                @endif
                 <p class="item-name">{{$item->item_name}}</p>
             </a>
         </div>
         @endforeach
+        @endif
     </div>
 </div>
 @endsection
