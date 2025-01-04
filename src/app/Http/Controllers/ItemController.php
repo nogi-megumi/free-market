@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Condition;
+use App\Models\Favorite;
 use App\Models\Item;
-use GuzzleHttp\RetryMiddleware;
+use App\Models\User;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -26,15 +28,43 @@ class ItemController extends Controller
                 return $query->where('user_id', '!=', $user->id);
             })->get();
         }
-
         return view('item_index', compact('items', 'tab'));
     }
-    public function show(Item $item){
-        
-        $data=[
-            'item'=>$item
+
+    public function show(Item $item)
+    {
+        $condition = Condition::find($item->condition_id);
+        $comments=Comment::with('item')->where('item_id',$item->id)->get();
+        $item['condition'] = $condition;
+        $data = [
+            'item' => $item,
+            'comments'=>$comments,
         ];
-        // dd($data);
-        return view('item_detail',$data);
+        return view('item_detail', $data);
     }
+
+    public function like(Item $item)
+    {
+        $user = auth();
+        if (!$user) {
+            return redirect('/login');
+        }
+        $isLiked = $user->favorites('item_id', $item->id)->exists();
+        if ($isLiked) {
+            $user->favorites()->detach($item);
+        } else {
+            $user->favorites()->attach($item);
+        }
+        dd($isLiked);
+        return back();
+    }
+    // public function delete(Item $item)
+    // {
+    //     $user = auth()->id();
+    //     $favorite = Favorite::where($item->user_id, '=', $user)->get();
+    //     if ($favorite) {
+    //         $favorite->delete();
+    //     }
+    //     return back();
+    // }
 }

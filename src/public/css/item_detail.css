@@ -122,4 +122,8 @@ a.form-item__button {
     .detail-text--large {
         font-size: 28px;
     }
+
+    .detail-table__th {
+        width: 100px;
+    }
 }

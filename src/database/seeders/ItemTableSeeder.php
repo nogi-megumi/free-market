@@ -21,6 +21,9 @@ class ItemTableSeeder extends Seeder
         $imageUrl = 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg';
         $imageContent = Http::get($imageUrl)->body();
         $imageName = uniqid() . '.png';
+        // $filePath = 'public/images/' . $fileName;
+        // Storage::put($filePath, $imageContent);
+
         Storage::put('public/images/{$imageName}', $imageContent);
 
         $item = Item::create([

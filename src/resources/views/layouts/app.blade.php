@@ -16,7 +16,9 @@
         <header class="header">
             <div class="header-logo">
                 <div class="header-logo-image">
-                    <img src="img/logo.svg" alt="coachtech">
+                    <a href="/">
+                        <img src="img/logo.svg" alt="coachtech">
+                    </a>
                 </div>
             </div>
             @yield('header-item')
