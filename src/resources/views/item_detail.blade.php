@@ -56,17 +56,39 @@
                         class="detail-price">{{number_format($item->price)}}</span>&#40;税込み&#41;</p>
                 <div class="icon-group">
                     <div class="icon-group__item">
-                        <a class="icon__button like-button" href="">
-                            <div class="icon__button--star">
-                                <svg width="30" height="30" viewBox="0, -10, 150, 190">
-                                    <path
-                                        d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
-                                        fill="none" stroke="#000000" stroke-width="4">
-                                    </path>
-                                </svg>
-                            </div>
-                            {{!$item->favorites ? '0' : $item->favorites->count()}}
-                        </a>
+                        <form action="{{route('item.like',$item)}}" method="post">
+                            @csrf
+                            <button class="icon__button--submit" type="submit">
+                                <div class="icon__button--star">
+                                    @guest
+                                    <svg width="30" height="30" viewBox="0, -10, 150, 190">
+                                        <path
+                                            d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
+                                            fill="transparent" stroke="#000000" stroke-width="4">
+                                        </path>
+                                    </svg>
+                                    @endguest
+                                    @auth
+                                    @if ($item->isLiked)
+                                    <svg class="like" width="30" height="30" viewBox="0, -10, 150, 190">
+                                        <path
+                                            d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
+                                            fill="#fcd000" stroke="#000000" stroke-width="4">
+                                        </path>
+                                    </svg>
+                                    @else
+                                    <svg width="30" height="30" viewBox="0, -10, 150, 190">
+                                        <path
+                                            d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
+                                            fill="transparent" stroke="#000000" stroke-width="4">
+                                        </path>
+                                    </svg>
+                                    @endif
+                                    @endauth
+                                </div>
+                                {{!$item->favorites ? '0' : $item->favorites->count()}}
+                            </button>
+                        </form>
                     </div>
                     <div class="icon-group__item">
                         <a class="icon__button" href="#コメント">

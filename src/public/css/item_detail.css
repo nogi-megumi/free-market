@@ -108,6 +108,11 @@ a.form-item__button {
     height: 80px;
 }
 
+.icon__button--submit {
+    border: none;
+    background: none;
+}
+
 @media screen and (max-width:850px) {
     .content__grid {
         width: 100%;

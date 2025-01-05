@@ -44,7 +44,7 @@
         <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
         <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}" href="/?tab=mylist">マイリスト</a>
     </div>
-    @if ($items->isEmpty())
+    @if (!isset($items))
     @if ($tab==='mylist')
     <p class="alart-message">マイリストに登録された商品はありません</p>
     @endif
