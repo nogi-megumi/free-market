@@ -18,15 +18,14 @@ Route::post('/login', [
 ]);
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
-Route::post('/item/{item}/like', [ItemController::class, 'like'])->name('item.like');
+Route::post('/', [ItemController::class, 'search']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::put('/mypage/profile', [ProfileController::class, 'update']);
     Route::post('/comment/{item}', [CommentController::class, 'store'])->name('comment.store');
-    // Route::post('/item/{item}/like', [ItemController::class, 'store'])->name('item.like');
-    // Route::delete('/favorite/{item}', [ItemController::class, 'delete'])->name('favorite.delete');
+    Route::post('/item/{item}/like', [ItemController::class, 'like'])->name('item.like');
 
     Route::get('/sell', [ExhibitionController::class, 'create']);
     Route::post('/sell', [ExhibitionController::class, 'store']);

@@ -18,17 +18,11 @@ class ItemController extends Controller
         if ($tab === 'mylist') {
             if (!$user) {
                 return redirect('/login');
-            }else{
-            // $item=Item::with('favorite');
-            // $items = isset($user->favorites) ? Item::with('favorites')->get() : collect([]);
-            // }
-            $items=Item::whereHas('favorites',function($query) use ($user){
-                $query->where('user_id',$user->id);
+            } else {
+                $items = Item::whereHas('favorites', function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
                 })->get();
             }
-            // $items = isset($user->favorites) ? $user->favorites->map(function ($favorite) {
-            //     return $favorite->item;
-            // }) : collect([]);}
         } else {
             $items = Item::when($user, function ($query) use ($user) {
                 return $query->where('user_id', '!=', $user->id);
@@ -55,16 +49,25 @@ class ItemController extends Controller
     public function like(Item $item)
     {
         $user = auth()->user();
-        if (!$user) {
-            return redirect('/login');
+        $isLiked = $user->favorites()->where('item_id', $item->id)->exists();
+        if ($isLiked) {
+            $user->favorites()->detach($item->id);
         } else {
-            $isLiked = $user->favorites()->where('item_id', $item->id)->exists();
-            if ($isLiked) {
-                $user->favorites()->detach($item->id);
-            } else {
-                $user->favorites()->attach($item->id);
-            }
+            $user->favorites()->attach($item->id);
         }
         return back();
+    }
+
+    public function search(Request $request)
+    {
+        // ひらがな　カタカナ　漢字　いずれでも検索できるようになるか？
+        $items = Item::where('item_name', 'LIKE',"%{$request->keyword}%")->get();
+        $tab = '';
+
+        $param = [
+            'tab' => $tab,
+            'items' => $items
+        ];
+        return view('item_index', $param);
     }
 }
