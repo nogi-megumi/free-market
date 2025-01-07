@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('css')
-<link rel="stylesheet" href="css/profile.css">
-<link rel="stylesheet" href="css/exhibition.css">
+<link rel="stylesheet" href="{{asset('css/profile.css')}}">
+<link rel="stylesheet" href="{{asset('css/exhibition.css')}}">
 <script src="{{ asset('/js/upload_image.js') }}"></script>
 @endsection
 
 @section('header-item')
 <div class="header-search">
-    <form class="header-search-form" action="">
+    <form class="header-search-form" action="/" method="POST" action="">
         @csrf
-        <input class="header-search-form__input" type="text" placeholder="何をお探しですか？">
+        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text"
+            placeholder="何をお探しですか？" type="text" placeholder="何をお探しですか？">
     </form>
 </div>
 <div class="header-nav">

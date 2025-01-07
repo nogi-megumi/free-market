@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\CommentController;
 
 Route::post('/register', [
     RegisterController::class,
@@ -16,16 +17,19 @@ Route::post('/login', [
     'store'
 ]);
 Route::get('/', [ItemController::class, 'index']);
-// Route::get('/item/{id}', [ItemController::class, '']);
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
+Route::post('/', [ItemController::class, 'search']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::put('/mypage/profile', [ProfileController::class, 'update']);
+    Route::post('/comment/{item}', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/item/{item}/like', [ItemController::class, 'like'])->name('item.like');
 
     Route::get('/sell', [ExhibitionController::class, 'create']);
     Route::post('/sell', [ExhibitionController::class, 'store']);
-    // Route::get('/purchase/{item}', [ParchaseController::class, '']);
-    // Route::get('/purchase/address/{item}', [ParchaseController::class, '']);
+    // Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.show');
+    // Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit'])->name('purchase.edit');
 
 });

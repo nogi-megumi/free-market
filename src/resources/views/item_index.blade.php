@@ -6,9 +6,9 @@
 
 @section('header-item')
 <div class="header-search">
-    <form class="header-search-form" action="">
+    <form class="header-search-form" action="/" method="POST" >
         @csrf
-        <input class="header-search-form__input" type="text" placeholder="何をお探しですか？">
+        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text" placeholder="何をお探しですか？">
     </form>
 </div>
 <div class="header-nav">
@@ -44,7 +44,7 @@
         <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
         <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}" href="/?tab=mylist">マイリスト</a>
     </div>
-    @if ($items->isEmpty())
+    @if (!isset($items))
     @if ($tab==='mylist')
     <p class="alart-message">マイリストに登録された商品はありません</p>
     @endif
@@ -52,7 +52,7 @@
     <div class="item-index">
         @foreach ($items as $item)
         <div class="item-index__item-group">
-            <a href="">
+            <a href="{{ route('item.show', $item) }}">
                 <div class="image-container--square">
                     <img class="image-container__image" src="{{ asset('storage/images/' . $item->item_image) }}"
                         alt="{{$item->item_name}}">
