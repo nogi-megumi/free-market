@@ -32,19 +32,20 @@
 <div class="content--small">
     <div class="common-ttl">住所の変更</div>
     <div class="form">
-        <form class="form__inner" action="" method="post">
+        <form class="form__inner" action="{{route('purchase.update',$item)}}" method="post">
             @csrf
+            @method('put')
             <div class="form-item">
                 <label class="form-item__label" for="">郵便番号</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="postcode" value="{{$profile->postcode ?? ''}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">住所</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="address" value="{{$profile->address ?? ''}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">建物名</label>
-                <input class="form-item__input" type="text">
+                <input class="form-item__input" type="text" name="building" value="{{$profile->building ?? ''}}">
             </div>
             <div class="form-item">
                 <button class="form-item__button">更新する</button>

@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="form-item">
-                    <a class="form-item__button" href="/purchase">購入手続きへ</a>
+                    <a class="form-item__button" href="{{route('purchase.show',$item)}}">購入手続きへ</a>
                 </div>
             </div>
             <div class="detail__parts">

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Condition;
 use App\Models\Item;
-// use App\Models\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -60,7 +59,6 @@ class ItemController extends Controller
 
     public function search(Request $request)
     {
-        // ひらがな　カタカナ　漢字　いずれでも検索できるようになるか？
         $items = Item::where('item_name', 'LIKE',"%{$request->keyword}%")->get();
         $tab = '';
 
