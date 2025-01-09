@@ -61,6 +61,7 @@ td {
     display: block;
     border: none;
     line-height: 20px;
+    pointer-events: none;
 }
 
 .purchase-table__select {
@@ -82,7 +83,10 @@ td {
 .info-group__table {
     width: 100%;
     border: 1px solid #000;
-    padding: 20px 30px;
+}
+
+.info-group__tr {
+    height: 60px;
 }
 
 .info-group__tr:first-child {
@@ -96,6 +100,7 @@ td {
 
 .info-group__td {
     text-align: center;
+    padding: 20px;
 }
 
 @media screen and (max-width:850px) {

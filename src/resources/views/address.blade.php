@@ -37,15 +37,15 @@
             @method('put')
             <div class="form-item">
                 <label class="form-item__label" for="">郵便番号</label>
-                <input class="form-item__input" type="text" name="postcode" value="{{$profile->postcode ?? ''}}">
+                <input class="form-item__input" type="text" name="postcode" value="{{$address->postcode ?? ''}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">住所</label>
-                <input class="form-item__input" type="text" name="address" value="{{$profile->address ?? ''}}">
+                <input class="form-item__input" type="text" name="address" value="{{$address->address ?? ''}}">
             </div>
             <div class="form-item">
                 <label class="form-item__label" for="">建物名</label>
-                <input class="form-item__input" type="text" name="building" value="{{$profile->building ?? ''}}">
+                <input class="form-item__input" type="text" name="building" value="{{$address->building ?? ''}}">
             </div>
             <div class="form-item">
                 <button class="form-item__button">更新する</button>

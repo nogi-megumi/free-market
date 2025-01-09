@@ -3,6 +3,7 @@
 @section('css')
 <link rel="stylesheet" href="{{asset('css/item_index.css')}}">
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
+<script src="{{ asset('/js/select.js') }}"></script>
 @endsection
 
 @section('header-item')
@@ -38,7 +39,8 @@
     <div class="purchase-input">
         <div class="item-group">
             <div class="image-container--square">
-                <img class="image-container__image" src="{{asset('storage/images/' . $item->item_image)}}" alt="{{$item->item_name}}">
+                <img class="image-container__image" src="{{asset('storage/images/' . $item->item_image)}}"
+                    alt="{{$item->item_name}}">
             </div>
             <div>
                 <p class="item-name">{{$item->item_name}}</p>
@@ -55,10 +57,10 @@
                     </tr>
                     <tr class="purchase-table__tr">
                         <td class="purchase-table__td">
-                            <select class="purchase-table__select" name="payment">
+                            <select class="purchase-table__select payment" name="payment">
                                 <option selected hidden>選択してください</option>
-                                <option value="1">コンビニ払い</option>
-                                <option value="2">カード支払い</option>
+                                <option value="コンビニ払い">コンビニ払い</option>
+                                <option value="カード支払い">カード支払い</option>
                             </select>
                         </td>
                         <td class="purchase-table__td"></td>
@@ -71,13 +73,12 @@
                     </tr>
                     <tr class="purchase-table__tr">
                         <td class="purchase-table__td">
-                            <input class="purchase-table__input" type="text" name="postcode" value="{{old('postcode')}}"
-                                placeholder="&#12306;XXX-YYYY">
-                                {{-- {{$address->postcode}} --}}
-                            <input class="purchase-table__input" type="text" name="address" value="{{old('address')}}" placeholder="ここには住所と">
-                            {{-- {{$address->address}} --}}
-                            <input class="purchase-table__input" type="text" name="building" value="{{old('building')}}" placeholder="建物名が入ります">
-                            {{-- {{$address->building}} --}}
+                            <input class="purchase-table__input" type="text" name="postcode"
+                                value="{{$address->postcode ?? ''}}" placeholder="&#12306;XXX-YYYY" readonly>
+                            <input class="purchase-table__input" type="text" name="address"
+                                value="{{$address->address ?? ''}}" placeholder="ここには住所と" readonly>
+                            <input class="purchase-table__input" type="text" name="building"
+                                value="{{$address->building ?? ''}}" placeholder="建物名が入ります" readonly>
                         </td>
                     </tr>
                 </table>
@@ -92,8 +93,7 @@
             </tr>
             <tr class="info-group__tr">
                 <th class="info-group__th">支払い方法</th>
-                <td class="info-group__td">コンビニ払い</td>
-                {{-- 選択しを反映させる --}}
+                <td class="info-group__td payment-result"></td>
             </tr>
         </table>
         <div>

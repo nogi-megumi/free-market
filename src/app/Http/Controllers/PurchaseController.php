@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
     public function show(Item $item)
     {
-        $user=auth()->user();
-        $address=Profile::where('user_id',$user->id)->get();
-        // dd($address);
+        // if(!$request){
+        $address=auth()->user()->profile;
+        // }else{
+        // $address= $request->only('postcode', 'address', 'building');
+        // }
         $data = [
             'item' => $item,
             'address'=>$address
         ];
+        // dd($data);
+
         return view('purchase',$data);
     }
     public function store(Item $item)
@@ -25,18 +28,23 @@ class PurchaseController extends Controller
     }
     public function edit(Item $item)
     {
-        $user = auth()->user();
-        $profile = Profile::where('user_id', $user->id)->get();
+        $address = auth()->user()->profile;
         $data = [
             'item' => $item,
-            'profile' => $profile
+            'address' => $address
+        ];
+        return view('address',$data);
+    }
+    public function update(Item $item,Request $request)
+    {
+        $address=$request->only('postcode','address','building');
+        $data = [
+            'item' => $item,
+            'address' => $address
         ];
         // dd($data);
 
-        return view('address',$data);
-    }
-    public function update(Item $item)
-    {
-        return redirect()->route('purchase.show');
+        // return view('purchase',$data);
+        return redirect()->route('purchase.show',$data);
     }
 }
