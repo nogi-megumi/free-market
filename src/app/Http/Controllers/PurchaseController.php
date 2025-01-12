@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddressRequest;
 
 class PurchaseController extends Controller
 {
     public function show(Item $item)
     {
-        // if(!$request){
-        $address=auth()->user()->profile;
-        // }else{
-        // $address= $request->only('postcode', 'address', 'building');
-        // }
+        $defaultAddress = auth()->user()->profile;
+        $temporaryAddress = session('temporary_address', [
+            'postcode' => $defaultAddress->postcode ?? '',
+            'address' => $defaultAddress->address ?? '',
+            'building' => $defaultAddress->building ?? '',
+        ]);
         $data = [
             'item' => $item,
-            'address'=>$address
+            'address' => $temporaryAddress
         ];
-        // dd($data);
-
-        return view('purchase',$data);
+        return view('purchase', $data);
     }
     public function store(Item $item)
     {
@@ -28,23 +28,21 @@ class PurchaseController extends Controller
     }
     public function edit(Item $item)
     {
-        $address = auth()->user()->profile;
+        $address = session('temporary_address', auth()->user()->profile);
         $data = [
             'item' => $item,
             'address' => $address
         ];
-        return view('address',$data);
+        return view('address', $data);
     }
-    public function update(Item $item,Request $request)
+    public function update(Item $item, Request $request)
     {
-        $address=$request->only('postcode','address','building');
-        $data = [
-            'item' => $item,
-            'address' => $address
-        ];
-        // dd($data);
-
-        // return view('purchase',$data);
-        return redirect()->route('purchase.show',$data);
+        $request->validate([
+            'postcode' => ['regex:/^[0-9]{3}-[0-9]{4}$/i'],
+            'address' => ['required'],
+            'building' => ['required'],
+        ]);
+        session(['temporary_address' => $request->only(['postcode', 'address', 'building'])]);
+        return redirect()->route('purchase.show', $item);
     }
 }

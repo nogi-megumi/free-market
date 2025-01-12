@@ -59,24 +59,24 @@
                 @enderror
             </p>
             <div class="form-item">
-                <label class="form-item__label" for="">ユーザー名</label>
+                <label class="form-item__label">ユーザー名</label>
                 <input class="form-item__input" type="text" name="name" value="{{$user->name}}">
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">郵便番号</label>
+                <label class="form-item__label">郵便番号</label>
                 <input class="form-item__input" type="text" name="postcode" value="{{$profile->postcode ?? ''}}">
             </div>
-            <p class="error-message">
+            {{-- <p class="error-message">
                 @error('postcode')
                 {{$message}}
                 @enderror
-            </p>
+            </p> --}}
             <div class="form-item">
-                <label class="form-item__label" for="">住所</label>
+                <label class="form-item__label">住所</label>
                 <input class="form-item__input" type="text" name="address" value="{{$profile->address ?? ''}}">
             </div>
             <div class="form-item">
-                <label class="form-item__label" for="">建物名</label>
+                <label class="form-item__label">建物名</label>
                 <input class="form-item__input" type="text" name="building" value="{{$profile->building ?? ''}}">
             </div>
             <div class="form-item">

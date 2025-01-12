@@ -74,11 +74,11 @@
                     <tr class="purchase-table__tr">
                         <td class="purchase-table__td">
                             <input class="purchase-table__input" type="text" name="postcode"
-                                value="{{$address->postcode ?? ''}}" placeholder="&#12306;XXX-YYYY" readonly>
+                                value="{{$address['postcode']}}" placeholder="&#12306;XXX-YYYY" readonly>
                             <input class="purchase-table__input" type="text" name="address"
-                                value="{{$address->address ?? ''}}" placeholder="ここには住所と" readonly>
+                                value="{{$address['address']}}" placeholder="ここには住所と" readonly>
                             <input class="purchase-table__input" type="text" name="building"
-                                value="{{$address->building ?? ''}}" placeholder="建物名が入ります" readonly>
+                                value="{{$address['building']}}" placeholder="建物名が入ります" readonly>
                         </td>
                     </tr>
                 </table>
