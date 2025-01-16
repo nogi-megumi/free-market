@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Http\Requests\ProfileRequest;
@@ -12,7 +13,6 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $userImage = $user->profile->user_image ?? null;
-
         $tab = $request->query('tab');
         if ($tab === 'buy') {
             $items = $user->profile->purchases;
@@ -32,12 +32,13 @@ class ProfileController extends Controller
         return view('profile_edit', compact('profile', 'user'));
     }
 
-    public function update(ProfileRequest $request)
+    public function update(ProfileRequest $request, AddressRequest $addressRequest)
     {
         $user = auth()->user();
         $profile = $user->profile ?? new Profile();
 
-        $profile->fill($request->only(['user_image', 'postcode', 'address', 'building']));
+        $profile->fill($request->only(['user_image']));
+        $profile->fill($addressRequest->only(['postcode', 'address', 'building']));
         $profile->user_id = $user->id;
         $profile->updateImage($request);
         $profile->save();

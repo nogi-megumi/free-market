@@ -34,11 +34,10 @@
     <div class="form">
         <form class="form__inner" action="{{route('purchase.update',$item)}}" method="post">
             @csrf
-            @method('put')
             <div class="form-item">
                 <label class="form-item__label">郵便番号</label>
                 <input class="form-item__input" type="text" name="postcode"
-                    value="{{ old('postcode',$address->postcode)}}">
+                    value="{{ old('postcode',$address->postcode ?? '')}}">
             </div>
             <p class="error-message">@error('postcode')
                 {{$message}}
@@ -46,7 +45,7 @@
             <div class="form-item">
                 <label class="form-item__label">住所</label>
                 <input class="form-item__input" type="text" name="address"
-                    value="{{ old('address',$address->address)}}">
+                    value="{{ old('address',$address->address ?? '')}}">
             </div>
             <p class="error-message">@error('address')
                 {{$message}}
@@ -54,7 +53,7 @@
             <div class="form-item">
                 <label class="form-item__label">建物名</label>
                 <input class="form-item__input" type="text" name="building"
-                    value="{{ old('building',$address->building)}}">
+                    value="{{ old('building',$address->building ?? '')}}">
             </div>
             <p class="error-message">@error('building')
                 {{$message}}

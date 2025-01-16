@@ -25,13 +25,14 @@ class ProfileRequest extends FormRequest
     {
         return [
             'user_image' => ['image', 'mimes:jpeg,png'],
-            
+            'name' => ['required'],
         ];
     }
     public function messages()
     {
         return [
             'user_image.mimes' => '拡張子が.jpegもしくは.pngの画像を選択してください',
+            'name.required' => 'ユーザー名を入力してください',
         ];
     }
 }

@@ -37,13 +37,13 @@
 <div class="content--large">
     <div class="profile-group">
         <div class="profile-group__user-info">
+            @if (!$userImage)
+            <div class="image-container__image--none">ユーザーアイコン</div>
+            @else
             <div class="image-container--circle">
-                @if (!$userImage)
-                <div class="image-container__image image--circle">ユーザーアイコン</div>
-                @else
                 <img class="image-container__image" src="{{asset('storage/images/' . $userImage)}}" alt="ユーザーアイコン">
-                @endif
             </div>
+            @endif
             <p class="profile-group__user-name">{{Auth::user()->name}}</p>
         </div>
         <div class="link-bottun">

@@ -1,5 +1,8 @@
 .content--large {
     padding: 5%;
+}
+
+.grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
@@ -62,6 +65,7 @@ td {
     border: none;
     line-height: 20px;
     pointer-events: none;
+    width: 100%;
 }
 
 .purchase-table__select {

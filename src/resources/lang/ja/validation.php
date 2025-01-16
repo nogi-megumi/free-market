@@ -107,18 +107,11 @@ return [
     'url'                  => ':attributeは、有効なURL形式で指定してください。',
     'uuid'                 => ':attributeは、有効なUUIDでなければなりません。',
 
-    'custom' => [
-        'postcode' => [
-            'regex'=> ':attributeはハイフンを含む、半角数字で入力してください',
-        ]
-    ],
+    'custom' => [],
 
     'attributes' => [
-        'name'=>'お名前',
-        'email'=>'メールアドレス',
-        'password'=>'パスワード',
-        'postcode'=>'郵便番号',
-        'address'=>'住所',
-        'building'=>'建物名'
+        'name' => 'お名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
     ],
 ];

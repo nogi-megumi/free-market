@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
+use App\Models\Purchase;
 
 class PurchaseController extends Controller
 {
@@ -22,8 +24,17 @@ class PurchaseController extends Controller
         ];
         return view('purchase', $data);
     }
-    public function store(Item $item)
+    public function store(Item $item,PurchaseRequest $request)
     {
+        $user=auth()->user();
+        Purchase::create([
+            'user_id'=>$user->id,
+            'item_id'=>$item->id,
+            'payment'=>$request->payment,
+            'shipping_address'=>$request->shipping_address,
+        ]);
+        $item->status='売却済';
+        $item->save();
         return redirect('/');
     }
     public function edit(Item $item)
@@ -35,13 +46,8 @@ class PurchaseController extends Controller
         ];
         return view('address', $data);
     }
-    public function update(Item $item, Request $request)
+    public function update(Item $item, AddressRequest $request)
     {
-        $request->validate([
-            'postcode' => ['regex:/^[0-9]{3}-[0-9]{4}$/i'],
-            'address' => ['required'],
-            'building' => ['required'],
-        ]);
         session(['temporary_address' => $request->only(['postcode', 'address', 'building'])]);
         return redirect()->route('purchase.show', $item);
     }
