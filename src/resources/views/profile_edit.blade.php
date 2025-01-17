@@ -44,14 +44,12 @@
                 @if (!$profile)
                 <div class="image-container__image--none">ユーザーアイコン
                     <img id="preview" class="image-container__image" src="">
-                    {{-- 位置調整が必要かも --}}
                 </div>
                 @else
                 <div class="image-container--circle">
                     <img class="image-container__image" src="{{asset('storage/images/' . $profile->user_image)}}"
                         alt="ユーザーアイコン">
                     <img id="preview" class="image-container__image" src="">
-                    {{-- 位置調整が必要かも --}}
                 </div>
                 @endif
                 <label for="imageInput" class="link-bottun--border">画像を選択する

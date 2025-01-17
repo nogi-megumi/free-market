@@ -31,12 +31,16 @@
 }
 
 .image-container__image--none {
+    position: relative;
     width: 120px;
     height: 120px;
     border-radius: 50%;
     background: #d9d9d9;
 }
+
 .image-container__image {
+    position: absolute;
+    top: 0%;
     width: 100%;
     border-radius: 50%;
 }

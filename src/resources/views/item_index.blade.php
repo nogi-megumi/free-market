@@ -6,9 +6,10 @@
 
 @section('header-item')
 <div class="header-search">
-    <form class="header-search-form" action="/" method="POST" >
+    <form class="header-search-form" action="/" method="POST">
         @csrf
-        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text" placeholder="何をお探しですか？">
+        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text"
+            placeholder="何をお探しですか？">
     </form>
 </div>
 <div class="header-nav">
@@ -54,12 +55,12 @@
         <div class="item-index__item-group">
             <a href="{{ route('item.show', $item) }}">
                 <div class="image-container--square">
+                    @if ($item->status==='売却済')
+                    <span class="sold">Sold</span>
+                    @endif
                     <img class="image-container__image" src="{{ asset('storage/images/' . $item->item_image) }}"
                         alt="{{$item->item_name}}">
                 </div>
-                @if ($item->status==='売却済')
-                <span class="sold-message">Sold</span>
-                @endif
                 <p class="item-name">{{$item->item_name}}</p>
             </a>
         </div>

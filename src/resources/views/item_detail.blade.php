@@ -45,6 +45,9 @@
     <div class="content__grid">
         <div class="content__grid-column column__image">
             <div class="image-container--large">
+                @if ($item->status==='売却済')
+                <span class="sold">Sold</span>
+                @endif
                 <img class="image-container__image" src="{{asset('storage/images/' . $item->item_image)}}"
                     alt="{{$item->item_name}}">
             </div>
@@ -104,7 +107,11 @@
                     </div>
                 </div>
                 <div class="form-item">
+                    @if ($item->status==='売却済')
+                    <p class="sold-message">Sold</p>
+                    @else
                     <a class="form-item__button" href="{{route('purchase.show',$item)}}">購入手続きへ</a>
+                    @endif
                 </div>
             </div>
             <div class="detail__parts">

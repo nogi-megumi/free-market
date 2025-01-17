@@ -37,4 +37,8 @@ class Item extends Model
     {
         return $this->belongsToMany(User::class,'favorites');
     }
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }

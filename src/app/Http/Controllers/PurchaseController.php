@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\PurchaseRequest;
 use App\Models\Purchase;

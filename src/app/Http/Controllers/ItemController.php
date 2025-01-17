@@ -59,8 +59,16 @@ class ItemController extends Controller
 
     public function search(Request $request)
     {
-        $items = Item::where('item_name', 'LIKE',"%{$request->keyword}%")->get();
-        $tab = '';
+        dd($request);
+
+        $items = [];
+        if ($request->has('keyword')) {
+            $items = Item::where('item_name', 'LIKE', "%{$request->keyword}%")->get();
+            session()->put('search_items', $items);
+        } else {
+            $items = session()->get('search_items', []);
+        }
+        $tab = $request->get('tab', '');
 
         $param = [
             'tab' => $tab,

@@ -6,6 +6,7 @@ use App\Http\Requests\AddressRequest;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Item;
 
 class ProfileController extends Controller
 {
@@ -15,7 +16,10 @@ class ProfileController extends Controller
         $userImage = $user->profile->user_image ?? null;
         $tab = $request->query('tab');
         if ($tab === 'buy') {
-            $items = $user->profile->purchases;
+            $purchases = $user->purchases;
+            $items = Item::whereHas('purchases', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->get();
         } elseif ($tab === 'sell') {
             $items = $user->items;
         } else {

@@ -17,7 +17,7 @@
             <div class="header-logo">
                 <div class="header-logo-image">
                     <a href="/">
-                        <img src="img/logo.svg" alt="coachtech">
+                        <img src="{{asset('img/logo.svg')}}" alt="coachtech">
                     </a>
                 </div>
             </div>
