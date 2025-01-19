@@ -27,7 +27,6 @@ class ItemController extends Controller
                 return $query->where('user_id', '!=', $user->id);
             })->get();
         }
-        // dd($items);
         return view('item_index', compact('items', 'tab'));
     }
 
@@ -69,7 +68,6 @@ class ItemController extends Controller
             $items = session()->get('search_items', []);
             $request->merge(['keyword' => session()->get('search_keyword')]);
         }
-        // $tab = $request->get('tab', 'recommend');
         $tab = $request->get('tab', '');
         $param = [
             'tab' => $tab,

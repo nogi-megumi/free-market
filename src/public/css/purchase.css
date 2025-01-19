@@ -19,6 +19,8 @@
 
 .image-container--square {
     margin-right: 5%;
+    width: 180px;
+    height: 180px;
 }
 
 .item-name,

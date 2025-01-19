@@ -36,7 +36,7 @@
         <div class="purchase-input">
             <div class="item-group">
                 <div class="image-container--square">
-                    <img class="image-container__image" src="{{asset('storage/images/' . $item->item_image)}}"
+                    <img class="image-container__item-image" src="{{asset('storage/images/' . $item->item_image)}}"
                         alt="{{$item->item_name}}">
                 </div>
                 <div>
