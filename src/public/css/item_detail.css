@@ -27,6 +27,7 @@
 .icon__button {
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .icon__button--bubble {
@@ -103,14 +104,20 @@ a.form-item__button {
     padding: 10px;
 }
 
+.image-group {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
 .image-container--circle {
     width: 80px;
     height: 80px;
+    border-radius: 50%;
 }
 
-.icon__button--submit {
-    border: none;
-    background: none;
+.no-image {
+    background: #d9d9d9;
 }
 
 .sold-message {

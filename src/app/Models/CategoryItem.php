@@ -12,11 +12,11 @@ class CategoryItem extends Model
         'category_id',
         'item_id',
     ];
-    public function user()
+    public function item()
     {
         return $this->belongsTo(Item::class);
     }
-    public function condition()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

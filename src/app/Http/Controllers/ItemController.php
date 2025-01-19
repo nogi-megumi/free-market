@@ -27,6 +27,7 @@ class ItemController extends Controller
                 return $query->where('user_id', '!=', $user->id);
             })->get();
         }
+        // dd($items);
         return view('item_index', compact('items', 'tab'));
     }
 
@@ -59,20 +60,21 @@ class ItemController extends Controller
 
     public function search(Request $request)
     {
-        dd($request);
-
         $items = [];
         if ($request->has('keyword')) {
             $items = Item::where('item_name', 'LIKE', "%{$request->keyword}%")->get();
             session()->put('search_items', $items);
+            session()->put('search_keyword', $request->keyword);
         } else {
             $items = session()->get('search_items', []);
+            $request->merge(['keyword' => session()->get('search_keyword')]);
         }
+        // $tab = $request->get('tab', 'recommend');
         $tab = $request->get('tab', '');
-
         $param = [
             'tab' => $tab,
-            'items' => $items
+            'items' => $items,
+            'keyword' => $request->keyword
         ];
         return view('item_index', $param);
     }

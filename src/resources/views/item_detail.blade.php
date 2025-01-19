@@ -2,18 +2,12 @@
 @section('css')
 <link rel="stylesheet" href="{{asset('css/item_index.css')}}">
 <link rel="stylesheet" href="{{asset('css/exhibition.css')}}">
-<link rel="stylesheet" href="{{asset('css/profile.css')}}">
 <link rel="stylesheet" href="{{asset('css/item_detail.css')}}">
 @endsection
 
 @section('header-item')
-<div class="header-search">
-    <form class="header-search-form" action="/" method="POST" action="">
-        @csrf
-        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text"
-            placeholder="何をお探しですか？" type="text" placeholder="何をお探しですか？">
-    </form>
-</div>
+
+@include('layouts.search-form')
 <div class="header-nav">
     <nav>
         <ul class="header-nav__group">
@@ -48,7 +42,7 @@
                 @if ($item->status==='売却済')
                 <span class="sold">Sold</span>
                 @endif
-                <img class="image-container__image" src="{{asset('storage/images/' . $item->item_image)}}"
+                <img class="image-container__item-image" src="{{asset('storage/images/' . $item->item_image)}}"
                     alt="{{$item->item_name}}">
             </div>
         </div>
@@ -62,7 +56,7 @@
                     <div class="icon-group__item">
                         <form action="{{route('item.like',$item)}}" method="post">
                             @csrf
-                            <button class="icon__button--submit" type="submit">
+                            <button class="icon__button" type="submit">
                                 <div class="icon__button--star">
                                     @guest
                                     <svg width="30" height="30" viewBox="0, -10, 150, 190">
@@ -143,13 +137,13 @@
                 <p class="detail__ttl" id="コメント">コメント&#40;{{!$comments ? '0' : $comments->count()}}&#41;</p>
                 @foreach ($comments as $comment)
                 <div class="image-group">
+                    @if ($comment->user->profile && $comment->user->profile->user_image)
                     <div class="image-container--circle">
-                        @if ($comment->user->profile && $comment->user->profile->user_image)
                         <img class="image-container__image"
                             src="{{asset('storage/images/' . $comment->user->profile->user_image)}}" alt="ユーザーアイコン">
                     </div>
                     @else
-                    <img class="image-container__image image--circle" src="" alt="ユーザーアイコン">
+                    <div class="image-container--circle no-image"></div>
                     @endif
                     <p class="comment__user">{{$comment->user->name}}</p>
                 </div>

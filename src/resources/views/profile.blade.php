@@ -6,13 +6,8 @@
 @endsection
 
 @section('header-item')
-<div class="header-search">
-    <form class="header-search-form" action="/" method="POST" action="">
-        @csrf
-        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text"
-            placeholder="何をお探しですか？" type="text" placeholder="何をお探しですか？">
-    </form>
-</div>
+
+@include('layouts.search-form')
 <div class="header-nav">
     <nav>
         <ul class="header-nav__group">
@@ -38,7 +33,7 @@
     <div class="profile-group">
         <div class="profile-group__user-info">
             @if (!$userImage)
-            <div class="image-container__image--none">ユーザーアイコン</div>
+            <div class="image-container__image--none"></div>
             @else
             <div class="image-container--circle">
                 <img class="image-container__image" src="{{asset('storage/images/' . $userImage)}}" alt="ユーザーアイコン">
@@ -56,18 +51,13 @@
         <a class="tab-group__tab {{$tab !=='buy' ?'active' : ''}}" href="/mypage?tab=sell">出品した商品</a>
         <a class="tab-group__tab {{$tab ==='buy' ?'active' : ''}}" href="/mypage?tab=buy">購入した商品</a>
     </div>
-    @if (!isset($items))
-    @if ($tab==='buy')
-    <p class="alart-message">購入した商品商品はありません</p>
-    @else
-    <p class="alart-message">出品した商品商品はありません</p> @endif
-    @else
+    @if (isset($items))
     <div class="item-index">
         @foreach ($items as $item)
         <div class="item-index__item-group">
             <a href="{{route('item.show',$item)}}">
                 <div class="image-container--square">
-                    <img class="image-container__image" src="{{ asset('storage/images/' . $item->item_image) }}"
+                    <img class="image-container__item-image" src="{{ asset('storage/images/' . $item->item_image) }}"
                         alt="{{$item->item_name}}">
                 </div>
                 <p class="item-name">{{$item->item_name}}</p>

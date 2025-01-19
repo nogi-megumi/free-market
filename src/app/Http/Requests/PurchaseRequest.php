@@ -32,7 +32,7 @@ class PurchaseRequest extends FormRequest
     {
         return [
             'payment.required' => '支払い方法を選択してください',
-            'shipping_address.required' => '配送先を入力してください',
+            'shipping_address.required' => '配送先を指定してください',
         ];
     }
 }
