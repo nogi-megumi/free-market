@@ -34,6 +34,7 @@ class ProfileFactory extends Factory
             'user_image' => $fileName,
             'postcode' => $formatPostcode,
             'address' => $this->faker->address,
+            'building'=>$this->faker->secondaryAddress,
         ];
     }
 }
