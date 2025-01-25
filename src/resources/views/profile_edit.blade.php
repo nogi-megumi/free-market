@@ -6,13 +6,8 @@
 @endsection
 
 @section('header-item')
-<div class="header-search">
-    <form class="header-search-form" action="/" method="POST" action="">
-        @csrf
-        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text"
-            placeholder="何をお探しですか？" type="text" placeholder="何をお探しですか？">
-    </form>
-</div>
+
+@include('layouts.search-form')
 <div class="header-nav">
     <nav>
         <ul class="header-nav__group">
@@ -41,14 +36,17 @@
             @csrf
             @method('put')
             <div class="image-group">
+                @if (!$profile)
+                <div class="image-container__image--none">
+                    <img id="preview" class="image-container__image" src="">
+                </div>
+                @else
                 <div class="image-container--circle">
-                    @if ($profile->user_image==null)
-                    <img class="image-container__image image--circle" src="" alt="ユーザーアイコン">
-                    @else
                     <img class="image-container__image" src="{{asset('storage/images/' . $profile->user_image)}}"
                         alt="ユーザーアイコン">
-                    @endif
+                    <img id="preview" class="image-container__image" src="">
                 </div>
+                @endif
                 <label for="imageInput" class="link-bottun--border">画像を選択する
                     <input class="input-image" type="file" accept=".jpeg,.png" name="user_image" id="imageInput">
                 </label>
@@ -59,11 +57,16 @@
                 @enderror
             </p>
             <div class="form-item">
-                <label class="form-item__label" for="">ユーザー名</label>
+                <label class="form-item__label">ユーザー名</label>
                 <input class="form-item__input" type="text" name="name" value="{{$user->name}}">
             </div>
+            <p class="error-message">
+                @error('name')
+                {{$message}}
+                @enderror
+            </p>
             <div class="form-item">
-                <label class="form-item__label" for="">郵便番号</label>
+                <label class="form-item__label">郵便番号</label>
                 <input class="form-item__input" type="text" name="postcode" value="{{$profile->postcode ?? ''}}">
             </div>
             <p class="error-message">
@@ -72,13 +75,19 @@
                 @enderror
             </p>
             <div class="form-item">
-                <label class="form-item__label" for="">住所</label>
+                <label class="form-item__label">住所</label>
                 <input class="form-item__input" type="text" name="address" value="{{$profile->address ?? ''}}">
             </div>
+            <p class="error-message">@error('address')
+                {{$message}}
+                @enderror</p>
             <div class="form-item">
-                <label class="form-item__label" for="">建物名</label>
+                <label class="form-item__label">建物名</label>
                 <input class="form-item__input" type="text" name="building" value="{{$profile->building ?? ''}}">
             </div>
+            <p class="error-message">@error('building')
+                {{$message}}
+                @enderror</p>
             <div class="form-item">
                 <button class="form-item__button">更新する</button>
             </div>

@@ -5,12 +5,8 @@
 @endsection
 
 @section('header-item')
-<div class="header-search">
-    <form class="header-search-form" action="/" method="POST" >
-        @csrf
-        <input class="header-search-form__input" name="keyword" value="{{ request('keyword') }}" type="text" placeholder="何をお探しですか？">
-    </form>
-</div>
+
+@include('layouts.search-form')
 <div class="header-nav">
     <nav>
         <ul class="header-nav__group">
@@ -41,25 +37,27 @@
 @section('content')
 <div class="content--large">
     <div class="tab-group">
+        @if (!isset($keyword))
         <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
         <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}" href="/?tab=mylist">マイリスト</a>
+        @else
+        <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
+        <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}"
+            href="/?tab=mylist&keyword={{request('keyword')}}">マイリスト</a>
+        @endif
     </div>
-    @if (!isset($items))
-    @if ($tab==='mylist')
-    <p class="alart-message">マイリストに登録された商品はありません</p>
-    @endif
-    @else
+    @if (isset($items))
     <div class="item-index">
         @foreach ($items as $item)
         <div class="item-index__item-group">
             <a href="{{ route('item.show', $item) }}">
                 <div class="image-container--square">
-                    <img class="image-container__image" src="{{ asset('storage/images/' . $item->item_image) }}"
+                    @if ($item->status==='売却済')
+                    <span class="sold">Sold</span>
+                    @endif
+                    <img class="image-container__item-image" src="{{ asset('storage/images/' . $item->item_image) }}"
                         alt="{{$item->item_name}}">
                 </div>
-                @if ($item->status==='売却済')
-                <span class="sold-message">Sold</span>
-                @endif
                 <p class="item-name">{{$item->item_name}}</p>
             </a>
         </div>

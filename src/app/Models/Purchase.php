@@ -10,18 +10,16 @@ class Purchase extends Model
     use HasFactory;
     protected $fillable = [
         'item_id',
-        'profile_id',
+        'user_id',
         'payment',
-        'postcode',
-        'address',
-        'building',
+        'shipping_address',
     ];
     public function item()
     {
         return $this->belongsTo(User::class);
     }
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 }

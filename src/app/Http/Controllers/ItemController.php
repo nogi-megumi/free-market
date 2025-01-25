@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Condition;
 use App\Models\Item;
-// use App\Models\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -60,13 +59,20 @@ class ItemController extends Controller
 
     public function search(Request $request)
     {
-        // ひらがな　カタカナ　漢字　いずれでも検索できるようになるか？
-        $items = Item::where('item_name', 'LIKE',"%{$request->keyword}%")->get();
-        $tab = '';
-
+        $items = [];
+        if ($request->has('keyword')) {
+            $items = Item::where('item_name', 'LIKE', "%{$request->keyword}%")->get();
+            session()->put('search_items', $items);
+            session()->put('search_keyword', $request->keyword);
+        } else {
+            $items = session()->get('search_items', []);
+            $request->merge(['keyword' => session()->get('search_keyword')]);
+        }
+        $tab = $request->get('tab', '');
         $param = [
             'tab' => $tab,
-            'items' => $items
+            'items' => $items,
+            'keyword' => $request->keyword
         ];
         return view('item_index', $param);
     }

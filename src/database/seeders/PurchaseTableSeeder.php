@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Profile;
+use App\Models\Purchase;
 use Illuminate\Database\Seeder;
 
-class ProfileTableSeeder extends Seeder
+class PurchaseTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ProfileTableSeeder extends Seeder
      */
     public function run()
     {
-        Profile::factory()->count(5)->create();
+        Purchase::factory()->count(3)->create();
     }
 }

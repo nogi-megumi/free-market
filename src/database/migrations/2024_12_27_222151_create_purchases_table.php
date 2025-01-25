@@ -16,11 +16,9 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('item_id');
-            $table->foreignId('profile_id');
-            $table->integer('payment');
-            $table->string('postcode', 8);
-            $table->string('address');
-            $table->string('building')->nullable();
+            $table->foreignId('user_id');
+            $table->string('payment');
+            $table->string('shipping_address');
             $table->timestamps();
         });
     }

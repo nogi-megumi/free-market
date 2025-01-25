@@ -107,13 +107,11 @@ return [
     'url'                  => ':attributeは、有効なURL形式で指定してください。',
     'uuid'                 => ':attributeは、有効なUUIDでなければなりません。',
 
-    'custom' => [
-        
-    ],
+    'custom' => [],
 
     'attributes' => [
-        'name'=>'お名前',
-        'email'=>'メールアドレス',
-        'password'=>'パスワード'
+        'name' => 'お名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
     ],
 ];
