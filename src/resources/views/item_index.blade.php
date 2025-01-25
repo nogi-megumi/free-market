@@ -41,8 +41,9 @@
         <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
         <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}" href="/?tab=mylist">マイリスト</a>
         @else
-        <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
-        <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}"
+        <a class="tab-group__tab {{request('tab', 'recommend') !=='mylist' ?'active' : ''}}"
+            href="/?tab=recommend&keyword={{ request('keyword') }}">おすすめ</a>
+        <a class="tab-group__tab {{request('tab') ==='mylist' ?'active' : ''}}"
             href="/?tab=mylist&keyword={{request('keyword')}}">マイリスト</a>
         @endif
     </div>

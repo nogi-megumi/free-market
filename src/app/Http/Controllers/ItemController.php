@@ -11,12 +11,20 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
+        dd($request);
+        $items = [];
         $user = auth()->user();
-        $tab = $request->query('tab');
+        $tab = $request->get('tab', 'recommend');
 
         if ($tab === 'mylist') {
             if (!$user) {
                 return redirect('/login');
+            }
+
+            if ($request->has('keyword')) {
+                $items = Item::whereHas('favorites', function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })->where('item_name', 'LIKE', "%{$request->keyword}%")->get();
             } else {
                 $items = Item::whereHas('favorites', function ($query) use ($user) {
                     $query->where('user_id', $user->id);
@@ -27,7 +35,12 @@ class ItemController extends Controller
                 return $query->where('user_id', '!=', $user->id);
             })->get();
         }
-        return view('item_index', compact('items', 'tab'));
+        $param = [
+            'tab' => $tab,
+            'items' => $items,
+            'keyword' => $request->keyword
+        ];
+        return view('item_index', $param);
     }
 
     public function show(Item $item)
@@ -60,15 +73,24 @@ class ItemController extends Controller
     public function search(Request $request)
     {
         $items = [];
+        $user = auth()->user();
+        $tab = $request->get('tab', 'recommend');
+        // dd($request);
+
         if ($request->has('keyword')) {
-            $items = Item::where('item_name', 'LIKE', "%{$request->keyword}%")->get();
+            if ($tab === 'recommend') {
+                $items = Item::where('item_name', 'LIKE', "%{$request->keyword}%")->get();
+            } elseif ($tab === 'mylist' && $user) {
+                $items = Item::whereHas('favorites', function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })->where('item_name', 'LIKE', "%{$request->keyword}%")->get();
+            }
             session()->put('search_items', $items);
             session()->put('search_keyword', $request->keyword);
         } else {
             $items = session()->get('search_items', []);
             $request->merge(['keyword' => session()->get('search_keyword')]);
         }
-        $tab = $request->get('tab', '');
         $param = [
             'tab' => $tab,
             'items' => $items,
