@@ -30,12 +30,13 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class)->withPivot('category_id')->withTimestamps();
     }
-    public function comments(){
-        return $this->belongsToMany(User::class,'comments')->withPivot('comment')->withTimestamps();
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
     public function favorites()
     {
-        return $this->belongsToMany(User::class,'favorites');
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
     public function purchases()
     {

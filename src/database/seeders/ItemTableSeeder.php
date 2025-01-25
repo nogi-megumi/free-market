@@ -18,7 +18,7 @@ class ItemTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('ja_JP');
         $userIds = User::pluck('id')->toArray();
         $items = [
             [
