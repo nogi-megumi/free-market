@@ -36,6 +36,11 @@
 
 @section('content')
 <div class="content--large">
+    @if(session('status'))
+    <div class="alart-message">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="tab-group">
         @if (!isset($keyword))
         <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>

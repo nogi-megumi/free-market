@@ -115,6 +115,11 @@ a.form-item__button {
     border-radius: 50%;
 }
 
+.image-container__image {
+    width: inherit;
+    border-radius: inherit;
+}
+
 .no-image {
     background: #d9d9d9;
 }

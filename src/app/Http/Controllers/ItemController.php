@@ -11,7 +11,6 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        dd($request);
         $items = [];
         $user = auth()->user();
         $tab = $request->get('tab', 'recommend');
@@ -75,7 +74,6 @@ class ItemController extends Controller
         $items = [];
         $user = auth()->user();
         $tab = $request->get('tab', 'recommend');
-        // dd($request);
 
         if ($request->has('keyword')) {
             if ($tab === 'recommend') {

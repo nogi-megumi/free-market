@@ -23,18 +23,18 @@ class PurchaseController extends Controller
         ];
         return view('purchase', $data);
     }
-    public function store(Item $item,PurchaseRequest $request)
+    public function store(Item $item, PurchaseRequest $request)
     {
-        $user=auth()->user();
+        $user = auth()->user();
         Purchase::create([
-            'user_id'=>$user->id,
-            'item_id'=>$item->id,
-            'payment'=>$request->payment,
-            'shipping_address'=>$request->shipping_address,
+            'user_id' => $user->id,
+            'item_id' => $item->id,
+            'payment' => $request->payment,
+            'shipping_address' => $request->shipping_address,
         ]);
-        $item->status='売却済';
+        $item->status = '売却済';
         $item->save();
-        return redirect('/');
+        return redirect()->route('checkout.session', $item);
     }
     public function edit(Item $item)
     {

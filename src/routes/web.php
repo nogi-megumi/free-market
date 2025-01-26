@@ -8,6 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\StripeController;
 
 Route::post('/register', [
     RegisterController::class,
@@ -33,5 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])->name('purchase.store');
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit'])->name('purchase.edit');
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'update'])->name('purchase.update');
-    Route::post('/charge', 'StripeController@charge')->name('stripe.charge');
+    Route::get('/checkout/{item}', [StripeController::class, 'checkout'])->name('checkout.session');
+    // Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
+    Route::get('success', function () {
+        return view('stripe.succsess');
+    })->name('success');
+    Route::get('cancel', function () {
+        return view('stripe.cancel');
+    })->name('cancel');
 });
