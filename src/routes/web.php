@@ -22,7 +22,7 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
 Route::post('/', [ItemController::class, 'search']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('verify')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::put('/mypage/profile', [ProfileController::class, 'update']);
@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'edit'])->name('purchase.edit');
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'update'])->name('purchase.update');
     Route::get('/checkout/{item}', [StripeController::class, 'checkout'])->name('checkout.session');
-    // Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
     Route::get('success', function () {
         return view('stripe.succsess');
     })->name('success');
