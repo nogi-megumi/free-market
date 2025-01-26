@@ -22,7 +22,7 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
 Route::post('/', [ItemController::class, 'search']);
 
-Route::middleware('verify')->group(function () {
+Route::middleware('verified')->group(function () {
     Route::get('/mypage', [ProfileController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::put('/mypage/profile', [ProfileController::class, 'update']);
