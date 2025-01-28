@@ -33,9 +33,9 @@
     <div class="profile-group">
         <div class="profile-group__user-info">
             @if (!$userImage)
-            <div class="image-container__image--none"></div>
+            <div class="image-container no-image circle"></div>
             @else
-            <div class="image-container--circle">
+            <div class="image-container circle">
                 <img class="image-container__image" src="{{asset('storage/images/' . $userImage)}}" alt="ユーザーアイコン">
             </div>
             @endif

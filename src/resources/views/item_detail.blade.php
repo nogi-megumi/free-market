@@ -138,12 +138,12 @@
                 @foreach ($comments as $comment)
                 <div class="image-group">
                     @if ($comment->user->profile && $comment->user->profile->user_image)
-                    <div class="image-container--circle">
-                        <img class="image-container__image"
+                    <div class="image-container circle">
+                        <img class="image-container__image circle"
                             src="{{asset('storage/images/' . $comment->user->profile->user_image)}}" alt="ユーザーアイコン">
                     </div>
                     @else
-                    <div class="image-container--circle no-image"></div>
+                    <div class="image-container circle no-image"></div>
                     @endif
                     <p class="comment__user">{{$comment->user->name}}</p>
                 </div>

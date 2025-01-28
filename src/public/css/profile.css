@@ -19,34 +19,20 @@
 }
 
 .image-group {
-    display: flex;
-    gap: 30px;
-    margin-top: 30px;
     align-items: center;
 }
 
-.image-container--circle {
+.image-container {
     position: relative;
     width: 120px;
     height: 120px;
-    border-radius: 50%;
     overflow: hidden;
 }
 
-.image-container__image--none {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: #d9d9d9;
-}
-
 .image-container__image {
-    width: inherit;
-    height: inherit;
-    border-radius: 50%;
     object-fit: cover;
 }
+
 .preview-image {
     position: absolute;
     top: 0;

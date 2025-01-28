@@ -37,11 +37,11 @@
             @method('put')
             <div class="image-group">
                 @if (!$profile)
-                <div class="image-container__image--none">
+                <div class="image-container no-image circle">
                     <img id="preview" class="image-container__image" src="" style="display: none">
                 </div>
                 @else
-                <div class="image-container--circle">
+                <div class="image-container circle">
                     <img id="currentImage" class="image-container__image"
                         src="{{asset('storage/images/' . $profile->user_image)}}" alt="ユーザーアイコン">
                     <img id="preview" class="image-container__image preview-image" src="" style="display: none">

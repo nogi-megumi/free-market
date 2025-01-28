@@ -18,9 +18,9 @@ class CommentFactory extends Factory
         $user = User::inRandomOrder()->first();
         $item = Item::inRandomOrder()->first();
         return [
-            'user_id'=>$user->id,
-            'item_id'=> $item->id,
-            'comment'=>$this->faker->sentence(20)
+            'user_id' => $user->id,
+            'item_id' => $item->id,
+            'comment' => $this->faker->realText(20)
         ];
     }
 }

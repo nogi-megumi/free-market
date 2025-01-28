@@ -9,7 +9,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Contracts\RegisterResponse;
-// use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
 
 class RegisterController extends Controller
@@ -55,9 +54,5 @@ class RegisterController extends Controller
         $this->guard->login($user);
 
         return app(RegisterResponse::class);
-    }
-    public function redirectPath()
-    {
-        return '/mypage/edit';
     }
 }

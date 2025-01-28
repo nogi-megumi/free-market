@@ -20,14 +20,10 @@ class ProfileFactory extends Factory
         return [
             'user_id' => User::factory(),
             'user_image' => null,
-            'postcode' => $this->generatePostcode(),
-            'address' => $this->faker->address,
+            'postcode' => $this->faker->postcode1 . '-' . $this->faker->postcode2,
+            'address' => $this->faker->prefecture . $this->faker->city . $this->faker->streetAddress,
             'building' => $this->faker->secondaryAddress,
         ];
-    }
-    private function generatePostcode(): string
-    {
-        return sprintf('%03d-%04d', mt_rand(100, 999), mt_rand(1000, 9999));
     }
     public function configure()
     {
