@@ -103,20 +103,9 @@ a.form-item__button {
     padding: 10px;
 }
 
-.image-group {
-    display: flex;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.image-container--circle {
+.image-container {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-}
-
-.no-image {
-    background: #d9d9d9;
 }
 
 .sold-message {

@@ -17,12 +17,7 @@
                     <button type="submit" class="header-nav__list-item">ログアウト</button>
                 </form>
             </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item" href="/mypage">マイページ</a>
-            </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item link--exhibition" href="/sell">出品</a>
-            </li>
+            @include('layouts.navi-list')
         </ul>
     </nav>
 </div>
@@ -37,14 +32,14 @@
             @method('put')
             <div class="image-group">
                 @if (!$profile)
-                <div class="image-container__image--none">
-                    <img id="preview" class="image-container__image" src="">
+                <div class="image-container no-image circle">
+                    <img id="preview" class="image-container__image" src="" style="display: none">
                 </div>
                 @else
-                <div class="image-container--circle">
-                    <img class="image-container__image" src="{{asset('storage/images/' . $profile->user_image)}}"
-                        alt="ユーザーアイコン">
-                    <img id="preview" class="image-container__image" src="">
+                <div class="image-container circle">
+                    <img id="currentImage" class="image-container__image"
+                        src="{{asset('storage/images/' . $profile->user_image)}}" alt="ユーザーアイコン">
+                    <img id="preview" class="image-container__image preview-image" src="" style="display: none">
                 </div>
                 @endif
                 <label for="imageInput" class="link-bottun--border">画像を選択する

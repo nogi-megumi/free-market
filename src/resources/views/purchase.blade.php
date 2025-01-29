@@ -18,12 +18,7 @@
                     <button type="submit" class="header-nav__list-item">ログアウト</button>
                 </form>
             </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item" href="/mypage">マイページ</a>
-            </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item link--exhibition" href="/sell">出品</a>
-            </li>
+            @include('layouts.navi-list')
         </ul>
     </nav>
 </div>
@@ -108,5 +103,14 @@
             </div>
         </div>
     </form>
+    {{-- stripeのデモ --}}
+    {{-- <form action="{{route('stripe.charge')}}" method="POST">
+        @csrf
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ env('STRIPE_KEY') }}"
+            data-amount="1000" data-name="お支払い画面" data-label="payment" data-description="現在はデモ画面です"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
+            data-currency="JPY">
+        </script>
+    </form> --}}
 </div>
 @endsection

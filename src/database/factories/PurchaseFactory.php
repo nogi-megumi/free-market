@@ -33,11 +33,9 @@ class PurchaseFactory extends Factory
     }
     private function generateShippingAddress(): string
     {
-        $postcode
-            = sprintf('%03d-%04d', mt_rand(100, 999), mt_rand(1000, 9999));
-        $address = $this->faker->address;
-        $building = $this->faker->secondaryAddress;
-        return "{$postcode}{$address}{$building}";
+        $postcode = $this->faker->postcode1 . '-' . $this->faker->postcode2;
+        $address = $this->faker->prefecture . $this->faker->city . $this->faker->streetAddress . $this->faker->secondaryAddress;
+        return "{$postcode}{$address}";
     }
     public function configure()
     {

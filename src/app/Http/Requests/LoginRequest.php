@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 
 class LoginRequest extends FortifyLoginRequest
@@ -27,7 +26,7 @@ class LoginRequest extends FortifyLoginRequest
     {
         return [
             'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'min:8', ],
+            'password' => ['required', 'min:8',],
         ];
     }
 }

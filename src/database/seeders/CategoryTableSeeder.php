@@ -14,7 +14,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories=[
+        $categories = [
             'ファッション',
             '家電',
             'インテリア',
@@ -30,10 +30,10 @@ class CategoryTableSeeder extends Seeder
             'おもちゃ',
             'ベビー・キッズ'
         ];
-    foreach($categories as $category){
-        DB::table('categories')->insert([
-            'category'=>$category
-        ]);
-    }
+        foreach ($categories as $category) {
+            DB::table('categories')->insert([
+                'category' => $category
+            ]);
+        }
     }
 }

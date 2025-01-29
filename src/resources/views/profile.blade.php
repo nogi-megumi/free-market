@@ -17,12 +17,7 @@
                     <button type="submit" class="header-nav__list-item">ログアウト</button>
                 </form>
             </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item" href="/mypage">マイページ</a>
-            </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item link--exhibition" href="/sell">出品</a>
-            </li>
+            @include('layouts.navi-list')
         </ul>
     </nav>
 </div>
@@ -33,9 +28,9 @@
     <div class="profile-group">
         <div class="profile-group__user-info">
             @if (!$userImage)
-            <div class="image-container__image--none"></div>
+            <div class="image-container no-image circle"></div>
             @else
-            <div class="image-container--circle">
+            <div class="image-container circle">
                 <img class="image-container__image" src="{{asset('storage/images/' . $userImage)}}" alt="ユーザーアイコン">
             </div>
             @endif

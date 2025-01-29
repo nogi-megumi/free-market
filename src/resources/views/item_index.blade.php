@@ -23,12 +23,7 @@
             </li>
             @endif
 
-            <li class="header-nav__list">
-                <a class="header-nav__list-item" href="/mypage">マイページ</a>
-            </li>
-            <li class="header-nav__list">
-                <a class="header-nav__list-item link--exhibition" href="/sell">出品</a>
-            </li>
+            @include('layouts.navi-list')
         </ul>
     </nav>
 </div>
@@ -36,13 +31,19 @@
 
 @section('content')
 <div class="content--large">
+    @if(session('status'))
+    <div class="alart-message">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="tab-group">
         @if (!isset($keyword))
         <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
         <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}" href="/?tab=mylist">マイリスト</a>
         @else
-        <a class="tab-group__tab {{$tab !=='mylist' ?'active' : ''}}" href="/">おすすめ</a>
-        <a class="tab-group__tab {{$tab ==='mylist' ?'active' : ''}}"
+        <a class="tab-group__tab {{request('tab', 'recommend') !=='mylist' ?'active' : ''}}"
+            href="/?tab=recommend&keyword={{ request('keyword') }}">おすすめ</a>
+        <a class="tab-group__tab {{request('tab') ==='mylist' ?'active' : ''}}"
             href="/?tab=mylist&keyword={{request('keyword')}}">マイリスト</a>
         @endif
     </div>
