@@ -10,14 +10,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StripeController;
 
-Route::post('/register', [
-    RegisterController::class,
-    'store'
-]);
-Route::post('/login', [
-    LoginController::class,
-    'store'
-]);
+Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/login', [LoginController::class, 'store']);
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
 Route::post('/', [ItemController::class, 'search']);

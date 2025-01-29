@@ -28,7 +28,6 @@ class StripeController extends Controller
             'success_url' => route('success'),
             'cancel_url' => route('cancel'),
         ]);
-
         return redirect($session->url);
     }
 }
