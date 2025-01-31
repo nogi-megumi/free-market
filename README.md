@@ -16,17 +16,14 @@
       2. composer install
       3. .env.exampleファイルから.envを作成し、環境変数を変更
       4. .envに以下の環境変数を追加
-          
+
+          APP_NAME=coachtechフリマ
           DB_CONNECTION=mysql
           DB_HOST=mysql
-          DB_PORT=3306
           DB_DATABASE=laravel_db
           DB_USERNAME=laravel_user
           DB_PASSWORD=laravel_pass
           
-          MAIL_MAILER=smtp
-          MAIL_HOST=mailhog
-          MAIL_PORT=1025
           MAIL_FROM_ADDRESS=test@example.com
           
       5. stripeにてアカウントを作成し、キーを取得する
@@ -40,13 +37,14 @@
       9. シーディングの実行 php artisan db:seed
 
 ## 使用技術（実行環境）
-- php
+- php8.1
 - Laravel
-- mysql
-- nginx
+- mysql8.0.26
+- nginx1.21.1
 - mailhog
 - stripe
 ## ER図
+![free-market drawio](https://github.com/user-attachments/assets/b12e7892-c2ee-4cea-afac-a83008d2db8e)
 
 ## URL
 - 開発環境：http://localhost/
