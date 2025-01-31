@@ -17,7 +17,7 @@ class ItemController extends Controller
 
         if ($tab === 'mylist') {
             if (!$user) {
-                return redirect('/login');
+                return view('item_index', compact('items', 'tab'));
             }
 
             if ($request->has('keyword')) {
