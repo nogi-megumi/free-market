@@ -5,9 +5,8 @@ namespace Tests\Feature;
 use App\Models\Favorite;
 use App\Models\Item;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\TestDatabaseSeeder;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
@@ -16,7 +15,7 @@ class ItemIndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected string $seeder = DatabaseSeeder::class;
+    protected string $seeder = TestDatabaseSeeder::class;
 
     public function test_item_index()
     {
@@ -56,7 +55,7 @@ class ItemIndexTest extends TestCase
 
     public function test_item_index_login_user()
     {
-        $user = User::first();
+        $user = User::factory()->create();
         $this->actingAs($user);
         $response = $this->get('/');
         $response->assertStatus(200);
@@ -75,7 +74,7 @@ class ItemIndexTest extends TestCase
 
     public function test_item_index_mylist_favotite_items()
     {
-        $user = User::first();
+        $user = User::factory()->create();
         $this->actingAs($user);
         Favorite::factory(3)->create();
         $response = $this->get('/?tab=mylist');
@@ -95,7 +94,7 @@ class ItemIndexTest extends TestCase
 
     public function test_item_index_mylist_sold_items()
     {
-        $user = User::first();
+        $user = User::factory()->create();
         $this->actingAs($user);
         Favorite::factory(3)->create();
         $response = $this->get('/?tab=mylist');
@@ -118,7 +117,7 @@ class ItemIndexTest extends TestCase
 
     public function test_item_index_mylist()
     {
-        $user = User::first();
+        $user = User::factory()->create();
         $this->actingAs($user);
         Favorite::factory(3)->create();
         $response = $this->get('/?tab=mylist');
