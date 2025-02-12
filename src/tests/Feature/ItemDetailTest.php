@@ -19,7 +19,7 @@ class ItemDetailTest extends TestCase
 
     public function test_item_detail_show()
     {
-        $item=Item::find(1);
+        $item = Item::find(1);
         $condition=Condition::find($item->condition_id);
         $user=User::factory()->create();
         $profile=Profile::factory()->create(['user_id'=>$user->id]);
@@ -56,7 +56,7 @@ class ItemDetailTest extends TestCase
 
     public function test_favorites_attach()
     {
-        $item = Item::find(1);
+        $item = Item::inRandomOrder()->first();
         $user = User::factory()->create();
         $this->actingAs($user);
 
@@ -82,7 +82,7 @@ class ItemDetailTest extends TestCase
 
     public function test_favorite_icon_color_change()
     {
-        $item = Item::find(1);
+        $item = Item::inRandomOrder()->first();
         $user = User::factory()->create();
         $this->actingAs($user);
         $response = $this->get(route('item.show', $item));
@@ -104,7 +104,7 @@ class ItemDetailTest extends TestCase
 
     public function test_favorites_detach()
     {
-        $item = Item::find(1);
+        $item = Item::inRandomOrder()->first();
         $user = User::factory()->create();
         $this->actingAs($user);
         Favorite::factory()->create(['user_id' => $user->id, 'item_id' => $item->id]);
@@ -134,8 +134,7 @@ class ItemDetailTest extends TestCase
     }
     public function test_comment_submit()
     {
-        $item = Item::find(1);
-        $user = User::factory()->create();
+        $item = Item::inRandomOrder()->first(); 
         $this->actingAs($user);
 
         $response = $this->get(route('item.show', $item));
@@ -164,7 +163,7 @@ class ItemDetailTest extends TestCase
     }
     public function test_comment_submit_not_login()
     {
-        $item = Item::find(1);
+        $item = Item::inRandomOrder()->first();
         $response = $this->get(route('item.show', $item));
         $response->assertStatus(200);
 
@@ -181,7 +180,7 @@ class ItemDetailTest extends TestCase
     }
     public function test_comment_invailid_required()
     {
-        $item = Item::find(1);
+        $item = Item::inRandomOrder()->first();
         $user = User::factory()->create();
         $this->actingAs($user);
         $response = $this->get(route('item.show', $item));
@@ -200,7 +199,7 @@ class ItemDetailTest extends TestCase
     }
     public function test_comment_invailid_max()
     {
-        $item = Item::find(1);
+        $item = Item::inRandomOrder()->first();
         $user = User::factory()->create();
         $this->actingAs($user);
 

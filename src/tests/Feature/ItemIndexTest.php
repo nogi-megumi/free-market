@@ -167,7 +167,7 @@ class ItemIndexTest extends TestCase
 
     public function test_item_index_search_mylist_transition()
     {
-        $user = User::first();
+        $user = User::factory()->create();
         $this->actingAs($user);
         Favorite::factory()->create(['user_id'=>$user->id,'item_id'=>1]);
 
