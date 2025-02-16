@@ -14,8 +14,8 @@
     laravel環境構築  
       1. docker-compose exec php bash
       2. composer install
-      3. .env.exampleファイルから.envを作成し、環境変数を変更
-      4. .envに以下の環境変数を追加
+      3. cp .env.example .env
+      4. .envに以下の環境変数を変更
 
           APP_NAME=coachtechフリマ
           DB_CONNECTION=mysql
@@ -26,7 +26,7 @@
           
           MAIL_FROM_ADDRESS=test@example.com
           
-      5. stripeにてアカウントを作成し、キーを取得する
+      5. stripe(https://stripe.com/jp)にてアカウントを作成し、キーを取得する
       6. キーを.envに追加する
 
              STRIPE_KEY=　公開キー
@@ -37,11 +37,11 @@
       9. シーディングの実行 php artisan db:seed
 
 ## 使用技術（実行環境）
-- php8.1
-- Laravel
+- php8.1.31
+- Laravel8.83.29
 - mysql8.0.26
 - nginx1.21.1
-- mailhog
+- mailhog1.0.1
 - stripe
 ## ER図
 ![free-market drawio](https://github.com/user-attachments/assets/b12e7892-c2ee-4cea-afac-a83008d2db8e)
