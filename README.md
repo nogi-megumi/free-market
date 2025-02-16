@@ -2,7 +2,7 @@
 
 ## 環境構築
 ### Dockerビルド
-- git clone git@github.com:
+- git clone git@github.com:nogi-megumi/free-market.git
 - docker compose up -d —build
 
 ### Laravel環境構築
