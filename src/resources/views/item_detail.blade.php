@@ -53,9 +53,9 @@
                         <form action="{{route('item.like',$item)}}" method="post">
                             @csrf
                             <button class="icon__button" type="submit">
-                                <div class="icon__button--star">
+                                <div class="icon__button--like">
                                     @guest
-                                    <svg width="30" height="30" viewBox="0, -10, 150, 190">
+                                    <svg class="like--inactive" width="30" height="30" viewBox="0, -10, 150, 190">
                                         <path
                                             d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
                                             fill="transparent" stroke="#000000" stroke-width="4">
@@ -64,14 +64,14 @@
                                     @endguest
                                     @auth
                                     @if ($item->isLiked)
-                                    <svg class="like" width="30" height="30" viewBox="0, -10, 150, 190">
+                                    <svg class="like--active" width="30" height="30" viewBox="0, -10, 150, 190">
                                         <path
                                             d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
                                             fill="#fcd000" stroke="#000000" stroke-width="4">
                                         </path>
                                     </svg>
                                     @else
-                                    <svg width="30" height="30" viewBox="0, -10, 150, 190">
+                                    <svg class="like--inactive" width="30" height="30" viewBox="0, -10, 150, 190">
                                         <path
                                             d="M75 0 L55 50 L0 50 L40 90 L15 150 L75 115 L135 150 L110 90 L150 50 L95 50 Z"
                                             fill="transparent" stroke="#000000" stroke-width="4">
