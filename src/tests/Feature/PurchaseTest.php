@@ -109,32 +109,6 @@ class PurchaseTest extends TestCase
         $this->assertEquals('売却済', $purchaseItem->status);
     }
 
-    // javascriptを使っているため、duckが必要？
-    // public function test_purchase_payment()
-    // {
-    //     $item = Item::inRandomOrder()->first();
-    //     $user = User::factory()->create();
-    //     $this->actingAs($user);
-
-    //     $response = $this->get(route('purchase.show', $item));
-    //     $response->assertStatus(200);
-    //     $response->assertSee('支払い方法');
-    //     $response->assertSee('選択してください');
-
-    //     $response = $this->post(route('purchase.show', $item),[
-    //         'payment'=> 'コンビニ払い'
-    //     ]);
-    //     $response = $this->refresh();
-    //     $response->assertStatus(200);
-    //     $response->assertSeeIn('.payment-result','コンビニ払い');
-
-    //     $response = $this->post(route('purchase.show', $item), [
-    //         'payment' => 'カード支払い'
-    //     ]);
-    //     $response = $this->refresh();
-    //     $response->assertStatus(200);
-    //     $response->assertSeeIn('.payment-result', 'カード支払い');
-    // }
 
     public function test_change_address()
     {
