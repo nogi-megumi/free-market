@@ -35,6 +35,25 @@
       7. アプリケーションキーの作成 php artisan key:generate
       8. マイグレーションの実行 php artisan migrate
       9. シーディングの実行 php artisan db:seed
+      10.シンボリックリンクを作成 php artisan storage:link
+
+## PHPUnitテスト
+    env.testingの作成
+    　1. docker-compose exec php bash
+      2. cp .env .env.testing
+      4. .env.testingに以下の環境変数を変更
+
+          APP_ENV=test
+          APP_KEY=
+          
+          DB_DATABASE=demo_test
+          DB_USERNAME=root
+          DB_PASSWORD=root
+
+    　5. テスト用のアプリケーションキーを作成 php artisan key:generate --env=testing
+      6. php artisan config:clear
+      7. php artisan migrate --env=testing
+      8. テスト実行 vendor/bin/phpunit
 
 ## 使用技術（実行環境）
 - php8.1.31
