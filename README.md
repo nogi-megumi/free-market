@@ -38,6 +38,12 @@
       10.シンボリックリンクを作成 php artisan storage:link
 
 ## PHPUnitテスト
+    テスト用データベースの作成
+    　1. docker-compose exec mysql bash
+      2. mysql -u root -p
+      　パスワードはrootを入力
+    　3.create database demo_test;
+     
     env.testingの作成
     　1. docker-compose exec php bash
       2. cp .env .env.testing
